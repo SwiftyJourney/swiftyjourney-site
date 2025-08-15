@@ -4,44 +4,44 @@ import HeroPortfolio from "../../components/HeroPortfolio.astro";
 import ProblemSolver from "../../components/ProblemSolver.astro";
 import SkillStrip from "../../components/SkillStrip.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.astro";
-import TechStack from "../../components/TechStack.astro";
+import TechBadges from "../../components/TechBadges.astro";
 import PartnersStrip from "../../components/PartnersStrip.astro";
 
-const altHref = "/es/";
+const altHref = "/en/";
 ---
 
 <BaseLayout
-  lang="en"
+  lang="es"
   altHref={altHref}
-  altLang="es"
+  altLang="en"
   title="Swifty Journey — Juan Dorado"
-  description="Mexican iOS/Software Engineer. Swift & SwiftUI."
+  description="Ingeniero iOS mexicano. Swift & SwiftUI."
 >
   <HeroPortfolio
-    title="Frontend iOS Engineer"
-    subtitle="I build maintainable, testable iOS apps with clean architecture, analytics and CI/CD."
+    title="Ingeniero iOS"
+    subtitle="Construyo apps iOS mantenibles y testeables con arquitectura limpia, analítica y CI/CD."
     ctas={[
-      { label: "See my work", href: "#projects" },
-      { label: "Download CV", href: "/JuanDorado-CV.pdf", kind: "primary" },
-      { label: "Read the blog", href: "https://blog.swiftyjourney.com" },
+      { label: "Ver trabajo", href: "#projects" },
+      { label: "Descargar CV", href: "/JuanDorado-CV.pdf", kind: "primary" },
+      { label: "Ir al blog", href: "https://blog.swiftyjourney.com" },
     ]}
   />
 
   <ProblemSolver
     title="Problem solver <coder>"
-    subtitle="Ingeniero en Sistemas Computacionales (TecNM Campus Laguna). Especializado en plataformas Apple, con foco en iOS. Aplico buenas prácticas de la industria, arquitectura limpia y aprendizaje continuo."
+    subtitle="Ingeniero en Sistemas Computacionales (TecNM Campus Laguna). Especializado en plataformas Apple con foco en iOS. Sigo buenas prácticas de la industria, arquitectura limpia y aprendizaje continuo."
     items={[
       {
-        text: "Experiencia de +10 años: de UIKit a SwiftUI, adoptando Swift Concurrency (async/await).",
+        text: "10+ años: de UIKit a SwiftUI, adoptando Swift Concurrency (async/await).",
       },
       {
-        text: "Trabajo en equipo y liderazgo de pequeños equipos iOS orientados a resultados.",
+        text: "Trabajo en equipo y liderazgo práctico de equipos iOS pequeños.",
       },
       {
-        text: "Entregas confiables: testabilidad, modularización con SPM y CI/CD.",
+        text: "Entrega confiable: testabilidad, modularización estricta con SPM y CI/CD.",
       },
       {
-        text: "Orientado al producto: métricas y observabilidad con Adobe y DataDog.",
+        text: "Orientado a producto: analítica y observabilidad con Adobe y DataDog.",
       },
     ]}
     photoSrc="/hero/taylor_wave.png"
@@ -52,12 +52,12 @@ const altHref = "/es/";
       {
         icon: "mdi:design",
         title: "Arquitectura",
-        desc: "Clean Architecture, SOLID, TDD y separación por capas.",
+        desc: "Clean Architecture, SOLID, TDD, límites por capas.",
       },
       {
         icon: "mdi:source-branch",
         title: "Modularización",
-        desc: "SPM, boundaries claros y dependencias bien definidas.",
+        desc: "Módulos SPM, límites claros y dependencias definidas.",
       },
       {
         icon: "mdi:gesture-tap-button",
@@ -67,69 +67,34 @@ const altHref = "/es/";
       {
         icon: "mdi:chart-box-outline",
         title: "Analytics & Observabilidad",
-        desc: "Adobe Analytics, DataDog: eventos, trazas y alertas.",
+        desc: "Adobe Analytics y DataDog: eventos, trazas y alertas.",
       },
       {
         icon: "mdi:cloud-sync-outline",
         title: "CI/CD",
-        desc: "GitHub Actions y Xcode Cloud cuando aplica.",
+        desc: "GitHub Actions; Xcode Cloud cuando aplica.",
       },
       {
         icon: "mdi:terminal",
-        title: "Git Terminal‑first",
-        desc: "Flujos Git; preferencia por CLI y automatización.",
+        title: "Git terminal-first",
+        desc: "Flujos Git; automatización vía CLI.",
       },
     ]}
   />
 
-  <TechStack
-    title="Tecnologías & enfoque"
+  <TechBadges
+    title="Tecnologías"
     items={[
-      {
-        icon: "mdi:apple",
-        name: "Apple Platforms",
-        desc: "iOS como foco principal; experiencia en iPadOS, watchOS y tvOS.",
-      },
-      {
-        icon: "mdi:gesture-tap-button",
-        name: "SwiftUI / UIKit",
-        desc: "Interfaz moderna con SwiftUI y legado sólido en UIKit.",
-      },
-      {
-        icon: "mdi:language-swift",
-        name: "Swift Concurrency",
-        desc: "async/await, actores, aislamiento de datos y pruebas.",
-      },
-      {
-        icon: "mdi:source-branch",
-        name: "Modularización (SPM)",
-        desc: "Boundaries claros, dependencias bien definidas y testabilidad.",
-      },
-      {
-        icon: "mdi:design",
-        name: "Arquitectura",
-        desc: "Clean Architecture, SOLID, TDD, MVVM, composición.",
-      },
-      {
-        icon: "mdi:cloud-sync-outline",
-        name: "CI/CD",
-        desc: "GitHub Actions con SRE; Xcode Cloud cuando aplica.",
-      },
-      {
-        icon: "mdi:chart-box-outline",
-        name: "Analytics",
-        desc: "Adobe Analytics, DataDog: eventos, trazas, alertas.",
-      },
-      {
-        icon: "mdi:git",
-        name: "Version Control",
-        desc: "Git terminal-first en GitHub/GitLab; flujos de ramificación.",
-      },
-      {
-        icon: "mdi:shield-check",
-        name: "Calidad",
-        desc: "Unit/UI tests, coverage útil, revisión de PRs, automatización.",
-      },
+      { icon: "mdi:apple", label: "Apple Platforms" },
+      { icon: "mdi:language-swift", label: "Swift" },
+      { icon: "mdi:gesture-tap-button", label: "SwiftUI" },
+      { icon: "mdi:alpha-u-box", label: "UIKit" },
+      { icon: "mdi:source-branch", label: "SPM" },
+      { icon: "mdi:cloud-sync-outline", label: "CI/CD" },
+      { icon: "mdi:github", label: "GitHub" },
+      { icon: "mdi:git", label: "Git (CLI)" },
+      { icon: "mdi:chart-box-outline", label: "Adobe Analytics" },
+      { icon: "mdi:chart-timeline-variant", label: "DataDog" },
     ]}
   />
 
@@ -137,20 +102,20 @@ const altHref = "/es/";
     projects={[
       {
         title: "OneDarkTheme",
-        desc: "One Dark theme for Xcode.",
+        desc: "Tema One Dark para Xcode.",
         tags: ["Swift", "Xcode"],
         href: "https://github.com/jfdoradotr/OneDarkTheme",
       },
       {
         title: "XCSnippets",
-        desc: "Xcode snippets via SPM.",
-        tags: ["Swift", "Productivity"],
+        desc: "Snippets de Xcode vía SPM.",
+        tags: ["Swift", "Productividad"],
         href: "https://github.com/jfdoradotr/XCSnippets",
       },
       {
         title: "I-VIPER",
-        desc: "Template to bootstrap VIPER.",
-        tags: ["Makefile", "Architecture"],
+        desc: "Plantilla para iniciar proyectos con VIPER.",
+        tags: ["Makefile", "Arquitectura"],
         href: "https://github.com/jfdoradotr/I-VIPER",
       },
     ]}
