@@ -4,6 +4,8 @@ import HeroPortfolio from "../../components/HeroPortfolio.astro";
 import ProblemSolver from "../../components/ProblemSolver.astro";
 import SkillStrip from "../../components/SkillStrip.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.astro";
+import TechStack from "../../components/TechStack.astro";
+import PartnersStrip from "../../components/PartnersStrip.astro";
 
 const altHref = "/es/";
 ---
@@ -27,28 +29,19 @@ const altHref = "/es/";
 
   <ProblemSolver
     title="Problem solver <coder>"
-    subtitle="Ingeniero iOS con +10 años construyendo apps mantenibles y testeables, de UIKit a SwiftUI, con arquitectura limpia y entrega continua."
+    subtitle="Ingeniero en Sistemas Computacionales (TecNM Campus Laguna). Especializado en plataformas Apple, con foco en iOS. Aplico buenas prácticas de la industria, arquitectura limpia y aprendizaje continuo."
     items={[
       {
-        text: "Arquitectura limpia, modularización estricta con SPM y foco en testability.",
+        text: "Experiencia de +10 años: de UIKit a SwiftUI, adoptando Swift Concurrency (async/await).",
       },
       {
-        text: "De UIKit a SwiftUI; closures y Structured Concurrency.",
+        text: "Trabajo en equipo y liderazgo de pequeños equipos iOS orientados a resultados.",
       },
       {
-        text: "Observabilidad (crashes, logs, métricas).",
+        text: "Entregas confiables: testabilidad, modularización con SPM y CI/CD.",
       },
       {
-        text: "CI/CD: pipelines, automatización y revisiones.",
-      },
-      {
-        text: "Apple Developer Platform: certificados, perfiles y publicación en App Store.",
-      },
-      {
-        text: "Mentoría y entrevistas técnicas de iOS; comunidad Essential Developer.",
-      },
-      {
-        text: "Control de versiones con Git, flujo terminal-first.",
+        text: "Orientado al producto: métricas y observabilidad con Adobe y DataDog.",
       },
     ]}
     photoSrc="/hero/taylor_wave.png"
@@ -89,6 +82,57 @@ const altHref = "/es/";
     ]}
   />
 
+  <TechStack
+    title="Tecnologías & enfoque"
+    items={[
+      {
+        icon: "mdi:apple",
+        name: "Apple Platforms",
+        desc: "iOS como foco principal; experiencia en iPadOS, watchOS y tvOS.",
+      },
+      {
+        icon: "mdi:gesture-tap-button",
+        name: "SwiftUI / UIKit",
+        desc: "Interfaz moderna con SwiftUI y legado sólido en UIKit.",
+      },
+      {
+        icon: "mdi:language-swift",
+        name: "Swift Concurrency",
+        desc: "async/await, actores, aislamiento de datos y pruebas.",
+      },
+      {
+        icon: "mdi:source-branch",
+        name: "Modularización (SPM)",
+        desc: "Boundaries claros, dependencias bien definidas y testabilidad.",
+      },
+      {
+        icon: "mdi:design",
+        name: "Arquitectura",
+        desc: "Clean Architecture, SOLID, TDD, MVVM, composición.",
+      },
+      {
+        icon: "mdi:cloud-sync-outline",
+        name: "CI/CD",
+        desc: "GitHub Actions con SRE; Xcode Cloud cuando aplica.",
+      },
+      {
+        icon: "mdi:chart-box-outline",
+        name: "Analytics",
+        desc: "Adobe Analytics, DataDog: eventos, trazas, alertas.",
+      },
+      {
+        icon: "mdi:git",
+        name: "Version Control",
+        desc: "Git terminal-first en GitHub/GitLab; flujos de ramificación.",
+      },
+      {
+        icon: "mdi:shield-check",
+        name: "Calidad",
+        desc: "Unit/UI tests, coverage útil, revisión de PRs, automatización.",
+      },
+    ]}
+  />
+
   <ProjectsGrid
     projects={[
       {
@@ -110,5 +154,13 @@ const altHref = "/es/";
         href: "https://github.com/jfdoradotr/I-VIPER",
       },
     ]}
+  />
+
+  <PartnersStrip
+    title="Afiliados"
+    logoSrc="/partners/bms_logo.png"
+    ctaHref="TU_LINK_DE_AFILIADO"
+    ctaLabel="Ver recursos"
+    desc="Socio de BigMountainStudio: recursos visuales y actualizados para aprender SwiftUI."
   />
 </BaseLayout>

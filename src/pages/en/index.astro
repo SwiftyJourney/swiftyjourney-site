@@ -4,6 +4,8 @@ import HeroPortfolio from "../../components/HeroPortfolio.astro";
 import ProblemSolver from "../../components/ProblemSolver.astro";
 import SkillStrip from "../../components/SkillStrip.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.astro";
+import TechBadges from "../../components/TechBadges.astro";
+import PartnersStrip from "../../components/PartnersStrip.astro";
 
 const altHref = "/es/";
 ---
@@ -27,26 +29,17 @@ const altHref = "/es/";
 
 	<ProblemSolver
 		title="Problem solver <coder>"
-		subtitle="iOS engineer with 10+ years building maintainable, testable apps—from UIKit to SwiftUI—with clean architecture and continuous delivery."
+		subtitle="Computer Systems Engineer (TecNM Campus Laguna). Apple platforms specialist focused on iOS. I follow industry best practices, clean architecture, and continuous learning."
 		items={[
 			{
-				text: "Clean Architecture, SPM modularization, and testability focus.",
+				text: "10+ years from UIKit to SwiftUI, embracing Swift Concurrency (async/await).",
+			},
+			{ text: "Team player and hands-on leader of small iOS teams." },
+			{
+				text: "Reliable delivery: testability, strict SPM modularization, and CI/CD.",
 			},
 			{
-				text: "From UIKit to SwiftUI; closures and Structured Concurrency.",
-			},
-			{
-				text: "Observability (crashes, logs, metrics).",
-			},
-			{ text: "CI/CD: pipelines, automation, review apps." },
-			{
-				text: "Apple Developer Platform: certificates, provisioning, App Store releases.",
-			},
-			{
-				text: "Mentoring and iOS interviewing; Essential Developer community.",
-			},
-			{
-				text: "Version control with Git, terminal‑first workflow.",
+				text: "Product-minded: analytics & observability with Adobe and DataDog.",
 			},
 		]}
 		photoSrc="/hero/taylor_wave.png"
@@ -77,13 +70,29 @@ const altHref = "/es/";
 			{
 				icon: "mdi:cloud-sync-outline",
 				title: "CI/CD",
-				desc: "GitHub Actions; Xcode Cloud when needed.",
+				desc: "GitHub Actions, Xcode Cloud.",
 			},
 			{
 				icon: "mdi:terminal",
 				title: "Git Terminal‑first",
 				desc: "Git workflows; CLI‑driven automation.",
 			},
+		]}
+	/>
+
+	<TechBadges
+		title="Tech stack"
+		items={[
+			{ icon: "mdi:apple", label: "Apple Platforms" },
+			{ icon: "mdi:language-swift", label: "Swift" },
+			{ icon: "mdi:gesture-tap-button", label: "SwiftUI" },
+			{ icon: "mdi:alpha-u-box", label: "UIKit" }, // o cambia por otro icono
+			{ icon: "mdi:source-branch", label: "SPM" },
+			{ icon: "mdi:cloud-sync-outline", label: "CI/CD" },
+			{ icon: "mdi:github", label: "GitHub" },
+			{ icon: "mdi:git", label: "Git (CLI)" },
+			{ icon: "mdi:chart-box-outline", label: "Adobe Analytics" },
+			{ icon: "mdi:chart-timeline-variant", label: "DataDog" },
 		]}
 	/>
 
@@ -108,5 +117,13 @@ const altHref = "/es/";
 				href: "https://github.com/jfdoradotr/I-VIPER",
 			},
 		]}
+	/>
+
+	<PartnersStrip
+		title="Partners & Affiliates"
+		logoSrc="/partners/bms_logo.png"
+		ctaHref="YOUR_AFFILIATE_LINK"
+		ctaLabel="See resources"
+		desc="Partnered with BigMountainStudio: visual, up-to-date resources to learn SwiftUI."
 	/>
 </BaseLayout>

@@ -3,17 +3,40 @@ import "../styles/global.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import { Icon } from "astro-icon/components";
 
+// ====== Ajusta si hace falta ======
+const SITE = "https://swiftyjourney.com";
+
+// Props por página
 const {
   title = "Swifty Journey",
   description = "iOS • Swift • SwiftUI",
-  lang = "en",
-  altHref = "/",
-  altLang = lang === "en" ? "es" : "en",
+  lang = "en", // 'en' o 'es'
 } = Astro.props;
 
-const path = Astro.url.pathname; // ej: /en/affiliates → /es/affiliates
-const toEs = path.replace(/^\/en(\/|$)/, "/es$1") || "/es/";
-const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
+// Ruta actual (e.g. /en/affiliates)
+const path = Astro.url.pathname || "/";
+
+// Alternas de idioma manteniendo la ruta
+const toEs = path.startsWith("/en/")
+  ? path.replace(/^\/en\//, "/es/")
+  : path.startsWith("/es/")
+    ? path
+    : "/es/";
+const toEn = path.startsWith("/es/")
+  ? path.replace(/^\/es\//, "/en/")
+  : path.startsWith("/en/")
+    ? path
+    : "/en/";
+
+// Canonical absoluto de la página actual
+const canonical = new URL(path, SITE).toString();
+
+// Hreflang absolutos para esta MISMA ruta en ambos idiomas
+const hrefEn = new URL(toEn, SITE).toString();
+const hrefEs = new URL(toEs, SITE).toString();
+
+// Home por idioma (para el logo)
+const homeHref = lang === "en" ? "/en/" : "/es/";
 ---
 
 <html lang={lang} class="min-h-full">
@@ -22,9 +45,16 @@ const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Canonical + hreflang (por ruta actual) -->
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" href={hrefEn} hreflang="en" />
+    <link rel="alternate" href={hrefEs} hreflang="es-mx" />
+    <link rel="alternate" href={SITE + "/"} hreflang="x-default" />
+
     <link rel="icon" href="/favicon.svg" />
 
-    <!-- Evita el “flash” al decidir el tema lo antes posible -->
+    <!-- Evita “flash” de tema -->
     <script is:inline>
       (function () {
         const key = "theme";
@@ -37,59 +67,72 @@ const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
       })();
     </script>
 
-    <!-- hreflang básico (ponemos el alterno desde la página) -->
-    <link rel="alternate" href={altHref} hreflang={altLang} />
+    <!-- Open Graph / Twitter básicos -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
 
   <body
     class="bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 antialiased"
   >
+    <!-- Header sticky + blur -->
     <header
-      class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between"
+      class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70"
     >
-      <a
-        href="/"
-        class="flex items-center gap-2"
-        aria-label="Swifty Journey — Home"
+      <div
+        class="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between"
       >
-        <!-- Logo para fondo claro -->
-        <img
-          src="/logo-light.svg"
-          alt="Swifty Journey"
-          class="h-12 block dark:hidden"
-        />
-        <!-- Logo para fondo oscuro -->
-        <img
-          src="/logo-dark.svg"
-          alt="Swifty Journey"
-          class="h-12 hidden dark:block"
-        />
-      </a>
-
-      <nav class="flex items-center gap-2">
-        <!-- Banderas siempre visibles -->
         <a
-          href={toEs}
-          aria-label="Español"
-          class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
-            hover:scale-110 transition
-            ${lang === "es" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
-          aria-current={lang === "es" ? "true" : "false"}>🇲🇽</a
+          href={homeHref}
+          class="flex items-center gap-2"
+          aria-label="Swifty Journey — Home"
         >
+          <!-- Logo light/dark (mismo archivo para ambos idiomas) -->
+          <img
+            src="/logo-light.svg"
+            alt="Swifty Journey"
+            width="192"
+            height="48"
+            class="h-12 w-auto block dark:hidden"
+          />
+          <img
+            src="/logo-dark.svg"
+            alt="Swifty Journey"
+            width="192"
+            height="48"
+            class="h-12 w-auto hidden dark:block"
+          />
+        </a>
 
-        <a
-          href={toEn}
-          aria-label="English"
-          class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
-            hover:scale-110 transition
-            ${lang === "en" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
-          aria-current={lang === "en" ? "true" : "false"}>🇺🇸</a
-        >
+        <nav class="flex items-center gap-2">
+          <!-- Idioma ES -->
+          <a
+            href={toEs}
+            aria-label="Español"
+            class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
+                    hover:scale-110 transition focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600
+                    ${lang === "es" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
+            aria-current={lang === "es" ? "true" : "false"}>🇲🇽</a
+          >
 
-        <div class="ml-2">
-          <ThemeToggle />
-        </div>
-      </nav>
+          <!-- Idioma EN -->
+          <a
+            href={toEn}
+            aria-label="English"
+            class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
+                    hover:scale-110 transition focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600
+                    ${lang === "en" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
+            aria-current={lang === "en" ? "true" : "false"}>🇺🇸</a
+          >
+
+          <div class="ml-2">
+            <ThemeToggle />
+          </div>
+        </nav>
+      </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-4">
@@ -102,7 +145,7 @@ const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
           <a
             href="https://github.com/swiftyjourney"
             target="_blank"
-            rel="noopener"
+            rel="noopener me"
             class="hover:opacity-100 opacity-80"
           >
             <Icon name="mdi:github" />
@@ -110,7 +153,7 @@ const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
           <a
             href="https://x.com/jfdoradotr"
             target="_blank"
-            rel="noopener"
+            rel="noopener me"
             class="hover:opacity-100 opacity-80"
           >
             <Icon name="mdi:twitter" />
@@ -118,7 +161,7 @@ const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
           <a
             href="https://linkedin.com/in/juanfranciscodoradotorres"
             target="_blank"
-            rel="noopener"
+            rel="noopener me"
             class="hover:opacity-100 opacity-80"
           >
             <Icon name="mdi:linkedin" />
