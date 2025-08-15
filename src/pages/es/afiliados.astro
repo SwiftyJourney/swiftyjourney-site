@@ -5,11 +5,7 @@ import { bmsProductsES, bmsStoreES } from "../../data/affiliates-es";
 
 const altHref = "/en/affiliates/";
 
-const url = new URL(Astro.request.url);
-const cat = url.searchParams.get("cat");
-const products = cat
-  ? bmsProductsES.filter((p) => p.category === cat)
-  : bmsProductsES;
+const products = bmsProductsES;
 ---
 
 <BaseLayout
@@ -22,31 +18,13 @@ const products = cat
   <section class="py-10 md:py-14">
     <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Afiliados</h1>
     <p class="opacity-80 mt-3 max-w-2xl">
-      Recursos seleccionados de nuestros socios. Al comprar con estos enlaces
+      Recursos seleccionados de nuestros socios. Al comprar con estos enlaces,
       apoyas SwiftyJourney sin costo extra para ti.
     </p>
 
-    <div class="mt-6 flex flex-wrap gap-2 text-sm">
-      <a
-        href="/es/afiliados/"
-        class="px-3 py-1 rounded-full border border-zinc-300 dark:border-zinc-700"
-        >Todos</a
-      >
-      <a href="/es/afiliados/?cat=books" class="px-3 py-1 rounded-full border"
-        >Libros</a
-      >
-      <a href="/es/afiliados/?cat=course" class="px-3 py-1 rounded-full border"
-        >Cursos</a
-      >
-      <a href="/es/afiliados/?cat=bundle" class="px-3 py-1 rounded-full border"
-        >Bundles</a
-      >
-    </div>
-
     <h2 class="mt-10 text-xl font-semibold">BigMountainStudio</h2>
     <p class="opacity-80 mt-1">
-      Método visual y actualizado para aprender SwiftUI — ideal si aprendes
-      mejor con recursos visuales.
+      Enfoque visual y actualizado para aprender SwiftUI.
       <a
         href={bmsStoreES}
         rel="sponsored noopener"
@@ -71,7 +49,7 @@ const products = cat
     </div>
 
     <p class="text-xs opacity-60 mt-8">
-      Aviso de afiliados: algunos enlaces son de afiliado. Pagas lo mismo — una
+      Aviso de afiliados: algunos enlaces son de afiliado. Pagas lo mismo; una
       pequeña comisión puede apoyar este sitio.
     </p>
   </section>

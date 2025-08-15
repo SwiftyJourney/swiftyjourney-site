@@ -3,14 +3,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import AffiliateCard from "../../components/AffiliateCard.astro";
 import { bmsProductsEN, bmsStoreEN } from "../../data/affiliates-en";
 
+// Ajusta si tu ruta ES es /es/afiliados/
 const altHref = "/es/afiliados/";
 
-// filtro por categoría (clientless: con query ?cat=bundle|books|course)
-const url = new URL(Astro.request.url);
-const cat = url.searchParams.get("cat"); // 'bundle' | 'books' | 'course' | null
-const products = cat
-  ? bmsProductsEN.filter((p) => p.category === cat)
-  : bmsProductsEN;
+const products = bmsProductsEN;
 ---
 
 <BaseLayout
@@ -26,24 +22,6 @@ const products = cat
       Curated resources from our partners. When you purchase using these links,
       you support SwiftyJourney at no extra cost to you.
     </p>
-
-    <!-- filtros simples -->
-    <div class="mt-6 flex flex-wrap gap-2 text-sm">
-      <a
-        href="/en/affiliates/"
-        class="px-3 py-1 rounded-full border border-zinc-300 dark:border-zinc-700"
-        >All</a
-      >
-      <a href="/en/affiliates/?cat=books" class="px-3 py-1 rounded-full border"
-        >Books</a
-      >
-      <a href="/en/affiliates/?cat=course" class="px-3 py-1 rounded-full border"
-        >Courses</a
-      >
-      <a href="/en/affiliates/?cat=bundle" class="px-3 py-1 rounded-full border"
-        >Bundles</a
-      >
-    </div>
 
     <h2 class="mt-10 text-xl font-semibold">BigMountainStudio</h2>
     <p class="opacity-80 mt-1">

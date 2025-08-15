@@ -1,37 +1,63 @@
 ---
 import "../styles/global.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
+import LangToggle from "../components/LangToggle.astro";
 import { Icon } from "astro-icon/components";
 
-// ====== Ajusta si hace falta ======
 const SITE = "https://swiftyjourney.com";
 
 // Props por página
 const {
   title = "Swifty Journey",
   description = "iOS • Swift • SwiftUI",
-  lang = "en", // 'en' o 'es'
+  lang = "en",
 } = Astro.props;
 
 // Ruta actual (e.g. /en/affiliates)
 const path = Astro.url.pathname || "/";
 
-// Alternas de idioma manteniendo la ruta
-const toEs = path.startsWith("/en/")
-  ? path.replace(/^\/en\//, "/es/")
-  : path.startsWith("/es/")
-    ? path
-    : "/es/";
-const toEn = path.startsWith("/es/")
-  ? path.replace(/^\/es\//, "/en/")
-  : path.startsWith("/en/")
-    ? path
-    : "/en/";
+/** Diccionario de slugs por idioma (puedes agregar más pares) */
+const slugMap = {
+  en: {
+    affiliates: "afiliados", // /en/affiliates → /es/afiliados
+  },
+  es: {
+    afiliados: "affiliates", // /es/afiliados → /en/affiliates
+  },
+};
 
-// Canonical absoluto de la página actual
+/** Traduce el primer segmento de una ruta al otro idioma */
+function translateFirstSegment(
+  currentLang: "en" | "es",
+  otherLang: "en" | "es",
+  pathname: string,
+) {
+  // quita el prefijo /en/ o /es/
+  const bare = pathname.replace(/^\/(en|es)\//, "");
+  const parts = bare.split("/").filter(Boolean); // ["affiliates", "sub", ...]
+
+  if (parts.length === 0) {
+    return `/${otherLang}/`; // home
+  }
+
+  const first = parts[0];
+  const mapped = (slugMap[currentLang] && slugMap[currentLang][first]) || first;
+
+  const rebuilt = `/${otherLang}/${[mapped, ...parts.slice(1)].join("/")}`;
+  return rebuilt.endsWith("/") ? rebuilt : rebuilt + "/";
+}
+
+const isES = path.startsWith("/es/");
+const isEN = path.startsWith("/en/");
+const currentLang = isES ? "es" : "en";
+const otherLang = currentLang === "es" ? "en" : "es";
+
+// URLs alternas correctas (prefijo + slug traducido)
+const toEn = isEN ? path : translateFirstSegment("es", "en", path);
+const toEs = isES ? path : translateFirstSegment("en", "es", path);
+
+// Canonical y hreflang (por ruta actual y su alterna)
 const canonical = new URL(path, SITE).toString();
-
-// Hreflang absolutos para esta MISMA ruta en ambos idiomas
 const hrefEn = new URL(toEn, SITE).toString();
 const hrefEs = new URL(toEs, SITE).toString();
 
@@ -108,26 +134,7 @@ const homeHref = lang === "en" ? "/en/" : "/es/";
         </a>
 
         <nav class="flex items-center gap-2">
-          <!-- Idioma ES -->
-          <a
-            href={toEs}
-            aria-label="Español"
-            class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
-                    hover:scale-110 transition focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600
-                    ${lang === "es" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
-            aria-current={lang === "es" ? "true" : "false"}>🇲🇽</a
-          >
-
-          <!-- Idioma EN -->
-          <a
-            href={toEn}
-            aria-label="English"
-            class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
-                    hover:scale-110 transition focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600
-                    ${lang === "en" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
-            aria-current={lang === "en" ? "true" : "false"}>🇺🇸</a
-          >
-
+          <LangToggle lang={lang} toEn={toEn} toEs={toEs} />
           <div class="ml-2">
             <ThemeToggle />
           </div>
