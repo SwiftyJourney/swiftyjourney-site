@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ErrorView from "../components/ErrorView.astro";
+
+// Detecta idioma según la URL solicitada (/es/... o /en/...)
+const path = Astro.url.pathname.toLowerCase();
+const lang: "en" | "es" = path.startsWith("/es/") ? "es" : "en";
+
+const altHref = lang === "en" ? "/es/" : "/en/";
+const title =
+  lang === "en"
+    ? "Page Not Found — Swifty Journey"
+    : "Página no encontrada — Swifty Journey";
+const description =
+  lang === "en"
+    ? "Sorry, we couldn't find the page you were looking for."
+    : "Lo sentimos, no encontramos la página que buscabas.";
+---
+
+<BaseLayout {title} {description} {lang} {altHref}>
+  <!-- Evita indexar la 404 -->
+  <meta slot="head" name="robots" content="noindex" />
+  <ErrorView code={404} {lang} />
+</BaseLayout>

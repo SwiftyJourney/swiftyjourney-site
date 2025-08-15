@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ErrorView from "../components/ErrorView.astro";
+
+const path = Astro.url.pathname.toLowerCase();
+const lang: "en" | "es" = path.startsWith("/es/") ? "es" : "en";
+
+const altHref = lang === "en" ? "/es/" : "/en/";
+const title =
+  lang === "en"
+    ? "Something went wrong — Swifty Journey"
+    : "Algo salió mal — Swifty Journey";
+const description =
+  lang === "en"
+    ? "An unexpected error occurred."
+    : "Ocurrió un error inesperado.";
+---
+
+<BaseLayout {title} {description} {lang} {altHref}>
+  <meta slot="head" name="robots" content="noindex" />
+  <ErrorView code={500} {lang} />
+</BaseLayout>

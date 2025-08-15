@@ -1,0 +1,110 @@
+---
+import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import { Icon } from "astro-icon/components";
+
+const {
+  title = "Swifty Journey",
+  description = "iOS • Swift • SwiftUI",
+  lang = "en",
+  altHref = "/",
+  altLang = lang === "en" ? "es" : "en",
+} = Astro.props;
+---
+
+<html lang={lang} class="min-h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+
+    <!-- Evita el “flash” al decidir el tema lo antes posible -->
+    <script is:inline>
+      (function () {
+        const key = "theme";
+        const saved = localStorage.getItem(key);
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const useDark = (saved ?? (prefersDark ? "dark" : "light")) === "dark";
+        if (useDark) document.documentElement.classList.add("dark");
+      })();
+    </script>
+
+    <!-- hreflang básico (ponemos el alterno desde la página) -->
+    <link rel="alternate" href={altHref} hreflang={altLang} />
+  </head>
+
+  <body
+    class="bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 antialiased"
+  >
+    <header
+      class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between"
+    >
+      <a
+        href="/"
+        class="flex items-center gap-2"
+        aria-label="Swifty Journey — Home"
+      >
+        <!-- Logo para fondo claro -->
+        <img
+          src="/logo-light.svg"
+          alt="Swifty Journey"
+          class="h-12 block dark:hidden"
+        />
+        <!-- Logo para fondo oscuro -->
+        <img
+          src="/logo-dark.svg"
+          alt="Swifty Journey"
+          class="h-12 hidden dark:block"
+        />
+      </a>
+
+      <nav class="flex items-center gap-4">
+        <!-- En cada página ponemos el alterno correcto -->
+        <a href={altHref} class="opacity-80 hover:opacity-100"
+          >{altLang.toUpperCase()}</a
+        >
+        <ThemeToggle />
+      </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4">
+      <slot />
+    </main>
+
+    <footer class="max-w-6xl mx-auto px-4 py-10 opacity-80">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex gap-4 text-2xl">
+          <a
+            href="https://github.com/swiftyjourney"
+            target="_blank"
+            rel="noopener"
+            class="hover:opacity-100 opacity-80"
+          >
+            <Icon name="mdi:github" />
+          </a>
+          <a
+            href="https://x.com/jfdoradotr"
+            target="_blank"
+            rel="noopener"
+            class="hover:opacity-100 opacity-80"
+          >
+            <Icon name="mdi:twitter" />
+          </a>
+          <a
+            href="https://linkedin.com/in/juanfranciscodoradotorres"
+            target="_blank"
+            rel="noopener"
+            class="hover:opacity-100 opacity-80"
+          >
+            <Icon name="mdi:linkedin" />
+          </a>
+        </div>
+        <p class="text-sm">© {new Date().getFullYear()} Swifty Journey</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+---
+const defaultLang = "en";
+const target = `/${defaultLang}/`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta name="robots" content="noindex" />
+    <!-- fallback inmediato por si no hay JS -->
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <script is:inline>
+      (function () {
+        try {
+          const key = "lang";
+          const saved = localStorage.getItem(key);
+          const nav = (navigator.language || "en").toLowerCase();
+          const guess = saved || (nav.startsWith("es") ? "es" : "en");
+          location.replace("/" + guess + "/");
+        } catch {
+          location.replace("{target}");
+        }
+      })();
+    </script>
+  </head>
+  <body>Redirecting…</body>
+</html>
