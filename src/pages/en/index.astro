@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 const altHref = "/es/";
 ---
 
@@ -10,55 +12,121 @@ const altHref = "/es/";
 	title="Swifty Journey — Juan Dorado"
 	description="Mexican iOS/Software Engineer. Swift & SwiftUI."
 >
+	<!-- HERO -->
 	<section class="py-16 md:py-24 text-center">
-		<h1 class="text-4xl md:text-6xl font-bold tracking-tight">Hi there 👋</h1>
-		<p class="mt-4 text-lg md:text-xl opacity-80">
-			I'm <strong>Juan Dorado</strong>, a proudly Mexican 🇲🇽 iOS/Software
-			Engineer focused on mobile development.
+		<h1 class="text-5xl md:text-7xl font-bold tracking-tight">iOS Engineer</h1>
+		<p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto">
+			Specializing in Swift & SwiftUI. I build maintainable, testable mobile
+			apps with clean architecture, analytics and CI/CD. Proudly Mexican 🇲🇽
 		</p>
 		<div class="mt-8 flex items-center justify-center gap-3">
 			<a
-				href="#projects"
+				href="#work"
 				class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-				>See projects</a
+				>See my work</a
+			>
+			<a
+				href="/JuanDorado-CV.pdf"
+				class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+				>Download CV</a
 			>
 			<a
 				href="https://blog.swiftyjourney.com"
-				class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+				class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700"
 				>Read the blog</a
 			>
 		</div>
-	</section>
 
-	<section id="projects" class="py-10">
-		<h2 class="text-2xl font-semibold">Highlights</h2>
-		<div class="mt-6 grid gap-6 md:grid-cols-2">
-			<!-- Placeholders: reemplaza con tus tarjetas reales -->
-			<article
-				class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5"
+		<!-- Strip de expertise -->
+		<div
+			class="mt-10 flex flex-wrap items-center justify-center gap-2 text-sm opacity-80"
+		>
+			<span
+				class="px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-700"
+				>Swift • SwiftUI</span
 			>
-				<h3 class="font-medium">Ballpark iOS App</h3>
-				<p class="opacity-80 mt-1">
-					SwiftUI, SPM modules, analytics, CI/CD with Xcode Cloud.
-				</p>
-			</article>
-			<article
-				class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5"
+			<span class="px-3 py-1 rounded-full border">Combine • Concurrency</span>
+			<span class="px-3 py-1 rounded-full border">Clean Architecture</span>
+			<span class="px-3 py-1 rounded-full border">Xcode Cloud • SPM</span>
+			<span class="px-3 py-1 rounded-full border"
+				>Analytics (Adobe, DataDog)</span
 			>
-				<h3 class="font-medium">Articles & Talks</h3>
-				<p class="opacity-80 mt-1">
-					Clean Architecture, testing, Combine, concurrency.
-				</p>
-			</article>
 		</div>
 	</section>
 
-	<section class="py-10">
-		<h2 class="text-2xl font-semibold">Affiliations</h2>
-		<p class="opacity-80 mt-2">
-			Partnered with <strong>BigMountainStudio</strong>. Learn SwiftUI with
-			visual, up-to-date resources.
-			<a class="underline" href="/en/affiliates">See resources</a>.
+	<!-- HIGHLIGHTS -->
+	<Section id="work" title="Highlights" subtitle="A few things I'm proud of.">
+		<div class="grid gap-6 md:grid-cols-2">
+			<ProjectCard
+				title="Ballpark iOS App"
+				desc="SwiftUI app with strict modularization via SPM, analytics, and Xcode Cloud CI/CD."
+				tech={["SwiftUI", "SPM", "Xcode Cloud", "Adobe", "DataDog"]}
+				href="https://github.com/jfdoradotr"
+			/>
+			<ProjectCard
+				title="Articles & Talks"
+				desc="Writing and talks about Clean Architecture, testing, Combine, and concurrency."
+				tech={["Clean Architecture", "Testing", "Combine", "Concurrency"]}
+				href="https://blog.swiftyjourney.com"
+			/>
+		</div>
+	</Section>
+
+	<!-- PINNED (estático por ahora; luego podemos leer GitHub API) -->
+	<Section
+		title="Open-source & Tools"
+		subtitle="Pinned from my GitHub profile."
+	>
+		<div class="grid gap-6 md:grid-cols-3">
+			<ProjectCard
+				title="OneDarkTheme"
+				desc="One Dark theme for Xcode."
+				tech={["Swift", "Xcode"]}
+				href="https://github.com/swiftyjourney/OneDarkTheme"
+			/>
+			<ProjectCard
+				title="XCSnippets"
+				desc="Xcode snippets installable via SPM."
+				tech={["Swift", "Productivity"]}
+				href="https://github.com/swiftyjourney/XCSnippets"
+			/>
+			<ProjectCard
+				title="I-VIPER"
+				desc="Template to bootstrap VIPER projects in Xcode."
+				tech={["Makefile", "Architecture"]}
+				href="https://github.com/swiftyjourney/I-VIPER"
+			/>
+		</div>
+	</Section>
+
+	<!-- AFFILIATES -->
+	<Section title="Affiliations" subtitle="Partnered with BigMountainStudio.">
+		<p class="opacity-80">
+			Learn SwiftUI with visual, up-to-date resources. <a
+				class="underline"
+				href="/en/affiliates">See resources</a
+			>.
 		</p>
-	</section>
+	</Section>
+
+	<!-- CTA final -->
+	<Section center class="pt-0">
+		<div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8">
+			<h3 class="text-xl font-semibold">Have a project in mind?</h3>
+			<p class="opacity-80 mt-1">Let’s build something great together.</p>
+			<div class="mt-4 flex items-center justify-center gap-3">
+				<a
+					href="mailto:hello@swiftyjourney.com"
+					class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+					>Contact me</a
+				>
+				<a
+					href="https://github.com/jfdoradotr"
+					target="_blank"
+					class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700"
+					>GitHub</a
+				>
+			</div>
+		</div>
+	</Section>
 </BaseLayout>

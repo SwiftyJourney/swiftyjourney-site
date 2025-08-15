@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 const altHref = "/en/";
 ---
 
@@ -8,56 +10,121 @@ const altHref = "/en/";
   altHref={altHref}
   altLang="en"
   title="Swifty Journey — Juan Dorado"
-  description="Ingeniero de software iOS, Swift y SwiftUI."
+  description="Ingeniero iOS (Swift/SwiftUI). Arquitectura limpia, pruebas y CI/CD."
 >
   <section class="py-16 md:py-24 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tight">¡Hola! 👋</h1>
-    <p class="mt-4 text-lg md:text-xl opacity-80">
-      Soy <strong>Juan Dorado</strong>, un orgulloso mexicano 🇲🇽 enfocado en
-      desarrollo móvil (iOS).
+    <h1 class="text-5xl md:text-7xl font-bold tracking-tight">Ingeniero iOS</h1>
+    <p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto">
+      Especialista en Swift & SwiftUI. Construyo apps mantenibles y testeables
+      con arquitectura limpia, analítica y CI/CD. Orgullosamente mexicano 🇲🇽
     </p>
     <div class="mt-8 flex items-center justify-center gap-3">
       <a
-        href="#projects"
+        href="#work"
         class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >Ver proyectos</a
+        >Ver trabajo</a
+      >
+      <a
+        href="/JuanDorado-CV.pdf"
+        class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+        >Descargar CV</a
       >
       <a
         href="https://blog.swiftyjourney.com"
-        class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-        >Ir al blog</a
+        class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700"
+        >Visitar el blog</a
+      >
+    </div>
+
+    <div
+      class="mt-10 flex flex-wrap items-center justify-center gap-2 text-sm opacity-80"
+    >
+      <span
+        class="px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-700"
+        >Swift • SwiftUI</span
+      >
+      <span class="px-3 py-1 rounded-full border">Combine • Concurrencia</span>
+      <span class="px-3 py-1 rounded-full border">Arquitectura limpia</span>
+      <span class="px-3 py-1 rounded-full border">Xcode Cloud • SPM</span>
+      <span class="px-3 py-1 rounded-full border"
+        >Analytics (Adobe, DataDog)</span
       >
     </div>
   </section>
 
-  <section id="projects" class="py-10">
-    <h2 class="text-2xl font-semibold">Destacados</h2>
-    <div class="mt-6 grid gap-6 md:grid-cols-2">
-      <article
-        class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5"
-      >
-        <h3 class="font-medium">Ballpark iOS App</h3>
-        <p class="opacity-80 mt-1">
-          SwiftUI, módulos SPM, analytics y CI/CD con Xcode Cloud.
-        </p>
-      </article>
-      <article
-        class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5"
-      >
-        <h3 class="font-medium">Artículos & charlas</h3>
-        <p class="opacity-80 mt-1">
-          Clean Architecture, pruebas, Combine, concurrencia.
-        </p>
-      </article>
+  <Section
+    id="work"
+    title="Destacados"
+    subtitle="Algunos proyectos de los que estoy orgulloso."
+  >
+    <div class="grid gap-6 md:grid-cols-2">
+      <ProjectCard
+        title="Ballpark iOS App"
+        desc="App en SwiftUI con modularización estricta (SPM), analytics y CI/CD con Xcode Cloud."
+        tech={["SwiftUI", "SPM", "Xcode Cloud", "Adobe", "DataDog"]}
+        href="https://github.com/jfdoradotr"
+      />
+      <ProjectCard
+        title="Artículos & charlas"
+        desc="Escritura y charlas sobre Clean Architecture, testing, Combine y concurrencia."
+        tech={["Arquitectura", "Pruebas", "Combine", "Concurrencia"]}
+        href="https://blog.swiftyjourney.com"
+      />
     </div>
-  </section>
+  </Section>
 
-  <section class="py-10">
-    <h2 class="text-2xl font-semibold">Afiliaciones</h2>
-    <p class="opacity-80 mt-2">
-      Socio de <strong>BigMountainStudio</strong>. Recursos visuales y
-      actualizados para aprender SwiftUI.
-      <a class="underline" href="/es/affiliates">Ver recursos</a>.
+  <Section
+    title="Open-source & herramientas"
+    subtitle="Anclados desde mi perfil de GitHub."
+  >
+    <div class="grid gap-6 md:grid-cols-3">
+      <ProjectCard
+        title="OneDarkTheme"
+        desc="Tema One Dark para Xcode."
+        tech={["Swift", "Xcode"]}
+        href="https://github.com/swiftyjourney/OneDarkTheme"
+      />
+      <ProjectCard
+        title="XCSnippets"
+        desc="Snippets de Xcode instalables vía SPM."
+        tech={["Swift", "Productividad"]}
+        href="https://github.com/swiftyjourney/XCSnippets"
+      />
+      <ProjectCard
+        title="I-VIPER"
+        desc="Plantilla para arrancar proyectos con VIPER en Xcode."
+        tech={["Makefile", "Arquitectura"]}
+        href="https://github.com/swiftyjourney/I-VIPER"
+      />
+    </div>
+  </Section>
+
+  <Section title="Afiliaciones" subtitle="Socio de BigMountainStudio.">
+    <p class="opacity-80">
+      Aprende SwiftUI con recursos visuales y actualizados. <a
+        class="underline"
+        href="/es/affiliates">Ver recursos</a
+      >.
     </p>
-  </section>
+  </Section>
+
+  <Section center class="pt-0">
+    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8">
+      <h3 class="text-xl font-semibold">¿Tienes un proyecto en mente?</h3>
+      <p class="opacity-80 mt-1">Construyamos algo increíble.</p>
+      <div class="mt-4 flex items-center justify-center gap-3">
+        <a
+          href="mailto:hello@swiftyjourney.com"
+          class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+          >Contáctame</a
+        >
+        <a
+          href="https://github.com/jfdoradotr"
+          target="_blank"
+          class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700"
+          >GitHub</a
+        >
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

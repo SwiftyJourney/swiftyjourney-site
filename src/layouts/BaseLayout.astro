@@ -10,6 +10,10 @@ const {
   altHref = "/",
   altLang = lang === "en" ? "es" : "en",
 } = Astro.props;
+
+const path = Astro.url.pathname; // ej: /en/affiliates → /es/affiliates
+const toEs = path.replace(/^\/en(\/|$)/, "/es$1") || "/es/";
+const toEn = path.replace(/^\/es(\/|$)/, "/en$1") || "/en/";
 ---
 
 <html lang={lang} class="min-h-full">
@@ -62,12 +66,29 @@ const {
         />
       </a>
 
-      <nav class="flex items-center gap-4">
-        <!-- En cada página ponemos el alterno correcto -->
-        <a href={altHref} class="opacity-80 hover:opacity-100"
-          >{altLang.toUpperCase()}</a
+      <nav class="flex items-center gap-2">
+        <!-- Banderas siempre visibles -->
+        <a
+          href={toEs}
+          aria-label="Español"
+          class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
+            hover:scale-110 transition
+            ${lang === "es" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
+          aria-current={lang === "es" ? "true" : "false"}>🇲🇽</a
         >
-        <ThemeToggle />
+
+        <a
+          href={toEn}
+          aria-label="English"
+          class={`text-xl rounded-full px-2 py-1 border border-zinc-300 dark:border-zinc-700
+            hover:scale-110 transition
+            ${lang === "en" ? "bg-zinc-100 dark:bg-zinc-800" : "opacity-80 hover:opacity-100"}`}
+          aria-current={lang === "en" ? "true" : "false"}>🇺🇸</a
+        >
+
+        <div class="ml-2">
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
 
