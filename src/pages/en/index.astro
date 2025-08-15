@@ -1,7 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Section from "../../components/Section.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
+import HeroPortfolio from "../../components/HeroPortfolio.astro";
+import ProblemSolver from "../../components/ProblemSolver.astro";
+import SkillStrip from "../../components/SkillStrip.astro";
+import ProjectsGrid from "../../components/ProjectsGrid.astro";
+
 const altHref = "/es/";
 ---
 
@@ -12,121 +15,98 @@ const altHref = "/es/";
 	title="Swifty Journey — Juan Dorado"
 	description="Mexican iOS/Software Engineer. Swift & SwiftUI."
 >
-	<!-- HERO -->
-	<section class="py-16 md:py-24 text-center">
-		<h1 class="text-5xl md:text-7xl font-bold tracking-tight">iOS Engineer</h1>
-		<p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto">
-			Specializing in Swift & SwiftUI. I build maintainable, testable mobile
-			apps with clean architecture, analytics and CI/CD. Proudly Mexican 🇲🇽
-		</p>
-		<div class="mt-8 flex items-center justify-center gap-3">
-			<a
-				href="#work"
-				class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-				>See my work</a
-			>
-			<a
-				href="/JuanDorado-CV.pdf"
-				class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-				>Download CV</a
-			>
-			<a
-				href="https://blog.swiftyjourney.com"
-				class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700"
-				>Read the blog</a
-			>
-		</div>
+	<HeroPortfolio
+		title="Frontend iOS Engineer"
+		subtitle="I build maintainable, testable iOS apps with clean architecture, analytics and CI/CD."
+		ctas={[
+			{ label: "See my work", href: "#projects" },
+			{ label: "Download CV", href: "/JuanDorado-CV.pdf", kind: "primary" },
+			{ label: "Read the blog", href: "https://blog.swiftyjourney.com" },
+		]}
+	/>
 
-		<!-- Strip de expertise -->
-		<div
-			class="mt-10 flex flex-wrap items-center justify-center gap-2 text-sm opacity-80"
-		>
-			<span
-				class="px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-700"
-				>Swift • SwiftUI</span
-			>
-			<span class="px-3 py-1 rounded-full border">Combine • Concurrency</span>
-			<span class="px-3 py-1 rounded-full border">Clean Architecture</span>
-			<span class="px-3 py-1 rounded-full border">Xcode Cloud • SPM</span>
-			<span class="px-3 py-1 rounded-full border"
-				>Analytics (Adobe, DataDog)</span
-			>
-		</div>
-	</section>
+	<ProblemSolver
+		title="Problem solver <coder>"
+		subtitle="iOS engineer with 10+ years building maintainable, testable apps—from UIKit to SwiftUI—with clean architecture and continuous delivery."
+		items={[
+			{
+				text: "Clean Architecture, SPM modularization, and testability focus.",
+			},
+			{
+				text: "From UIKit to SwiftUI; closures and Structured Concurrency.",
+			},
+			{
+				text: "Observability (crashes, logs, metrics).",
+			},
+			{ text: "CI/CD: pipelines, automation, review apps." },
+			{
+				text: "Apple Developer Platform: certificates, provisioning, App Store releases.",
+			},
+			{
+				text: "Mentoring and iOS interviewing; Essential Developer community.",
+			},
+			{
+				text: "Version control with Git, terminal‑first workflow.",
+			},
+		]}
+		photoSrc="/hero/taylor_wave.png"
+	/>
 
-	<!-- HIGHLIGHTS -->
-	<Section id="work" title="Highlights" subtitle="A few things I'm proud of.">
-		<div class="grid gap-6 md:grid-cols-2">
-			<ProjectCard
-				title="Ballpark iOS App"
-				desc="SwiftUI app with strict modularization via SPM, analytics, and Xcode Cloud CI/CD."
-				tech={["SwiftUI", "SPM", "Xcode Cloud", "Adobe", "DataDog"]}
-				href="https://github.com/jfdoradotr"
-			/>
-			<ProjectCard
-				title="Articles & Talks"
-				desc="Writing and talks about Clean Architecture, testing, Combine, and concurrency."
-				tech={["Clean Architecture", "Testing", "Combine", "Concurrency"]}
-				href="https://blog.swiftyjourney.com"
-			/>
-		</div>
-	</Section>
+	<SkillStrip
+		skills={[
+			{
+				icon: "mdi:design",
+				title: "Architecture",
+				desc: "Clean Architecture, SOLID, TDD, layered boundaries.",
+			},
+			{
+				icon: "mdi:source-branch",
+				title: "Modularization",
+				desc: "SPM modules, clear boundaries and dependencies.",
+			},
+			{
+				icon: "mdi:gesture-tap-button",
+				title: "SwiftUI & Concurrency",
+				desc: "From UIKit to SwiftUI; async/await, actors, isolation.",
+			},
+			{
+				icon: "mdi:chart-box-outline",
+				title: "Analytics & Observability",
+				desc: "Adobe Analytics & DataDog: events, traces, alerts.",
+			},
+			{
+				icon: "mdi:cloud-sync-outline",
+				title: "CI/CD",
+				desc: "GitHub Actions; Xcode Cloud when needed.",
+			},
+			{
+				icon: "mdi:terminal",
+				title: "Git Terminal‑first",
+				desc: "Git workflows; CLI‑driven automation.",
+			},
+		]}
+	/>
 
-	<!-- PINNED (estático por ahora; luego podemos leer GitHub API) -->
-	<Section
-		title="Open-source & Tools"
-		subtitle="Pinned from my GitHub profile."
-	>
-		<div class="grid gap-6 md:grid-cols-3">
-			<ProjectCard
-				title="OneDarkTheme"
-				desc="One Dark theme for Xcode."
-				tech={["Swift", "Xcode"]}
-				href="https://github.com/swiftyjourney/OneDarkTheme"
-			/>
-			<ProjectCard
-				title="XCSnippets"
-				desc="Xcode snippets installable via SPM."
-				tech={["Swift", "Productivity"]}
-				href="https://github.com/swiftyjourney/XCSnippets"
-			/>
-			<ProjectCard
-				title="I-VIPER"
-				desc="Template to bootstrap VIPER projects in Xcode."
-				tech={["Makefile", "Architecture"]}
-				href="https://github.com/swiftyjourney/I-VIPER"
-			/>
-		</div>
-	</Section>
-
-	<!-- AFFILIATES -->
-	<Section title="Affiliations" subtitle="Partnered with BigMountainStudio.">
-		<p class="opacity-80">
-			Learn SwiftUI with visual, up-to-date resources. <a
-				class="underline"
-				href="/en/affiliates">See resources</a
-			>.
-		</p>
-	</Section>
-
-	<!-- CTA final -->
-	<Section center class="pt-0">
-		<div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8">
-			<h3 class="text-xl font-semibold">Have a project in mind?</h3>
-			<p class="opacity-80 mt-1">Let’s build something great together.</p>
-			<div class="mt-4 flex items-center justify-center gap-3">
-				<a
-					href="mailto:hello@swiftyjourney.com"
-					class="px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-					>Contact me</a
-				>
-				<a
-					href="https://github.com/jfdoradotr"
-					target="_blank"
-					class="px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700"
-					>GitHub</a
-				>
-			</div>
-		</div>
-	</Section>
+	<ProjectsGrid
+		projects={[
+			{
+				title: "OneDarkTheme",
+				desc: "One Dark theme for Xcode.",
+				tags: ["Swift", "Xcode"],
+				href: "https://github.com/jfdoradotr/OneDarkTheme",
+			},
+			{
+				title: "XCSnippets",
+				desc: "Xcode snippets via SPM.",
+				tags: ["Swift", "Productivity"],
+				href: "https://github.com/jfdoradotr/XCSnippets",
+			},
+			{
+				title: "I-VIPER",
+				desc: "Template to bootstrap VIPER.",
+				tags: ["Makefile", "Architecture"],
+				href: "https://github.com/jfdoradotr/I-VIPER",
+			},
+		]}
+	/>
 </BaseLayout>

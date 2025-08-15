@@ -1,0 +1,32 @@
+---
+type Props = {
+  title: string;
+  subtitle: string;
+  ctas: { label: string; href: string; kind?: "primary" | "ghost" }[];
+};
+const { title, subtitle, ctas } = Astro.props;
+---
+
+<section class="py-16 md:py-24 text-center">
+  <h1 class="text-5xl md:text-7xl font-bold tracking-tight">{title}</h1>
+  <p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto">{subtitle}</p>
+
+  <div class="mt-8 flex items-center justify-center gap-3">
+    {
+      ctas.map(({ label, href, kind = "ghost" }) => (
+        <a
+          href={href}
+          class={`px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700
+                 ${kind === "primary" ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900" : "hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}
+        >
+          {label}
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Decorativo: teclado/mouse -->
+  <div class="relative mt-12 flex items-center justify-center">
+    <img src="/hero/taylor_coding.png" alt="" class="w-64 md:w-80 opacity-80" />
+  </div>
+</section>
