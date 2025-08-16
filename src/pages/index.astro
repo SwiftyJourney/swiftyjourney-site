@@ -20,7 +20,7 @@ const target = `/${defaultLang}/`;
           const guess = saved || (nav.startsWith("es") ? "es" : "en");
           location.replace("/" + guess + "/");
         } catch {
-          location.replace("{target}");
+          location.replace(target);
         }
       })();
     </script>
