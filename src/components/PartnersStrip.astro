@@ -5,6 +5,7 @@ type Props = {
   ctaLabel?: string;
   logoSrc: string; // /partners/bms.svg
   desc?: string;
+  disclaimer?: string;
 };
 const {
   title = "Partners & Affiliates",
@@ -12,6 +13,7 @@ const {
   ctaLabel = "See resources",
   logoSrc,
   desc = "",
+  disclaimer = "",
 } = Astro.props;
 ---
 
@@ -33,7 +35,6 @@ const {
     </a>
   </div>
   <p class="text-xs opacity-60 mt-3 text-center">
-    Disclaimer: algunos enlaces pueden ser de afiliado — apoyas Swifty Journey
-    sin costo extra para ti.
+    Disclaimer: {disclaimer}
   </p>
 </section>

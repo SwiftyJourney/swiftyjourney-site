@@ -48,9 +48,9 @@ function translateFirstSegment(
   return rebuilt.endsWith("/") ? rebuilt : rebuilt + "/";
 }
 
+const isEN = path.startsWith("/en/") || (!path.startsWith("/en/") && !path.startsWith("/es/"));
 const isES = path.startsWith("/es/");
-const isEN = path.startsWith("/en/");
-const currentLang = isES ? "es" : "en";
+const currentLang = isEN ? "en" : "es";
 const otherLang = currentLang === "es" ? "en" : "es";
 
 // URLs alternas correctas (prefijo + slug traducido)
