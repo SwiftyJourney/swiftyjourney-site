@@ -1,16 +1,16 @@
 export const createPersonJsonLd = (lang: 'en' | 'es' = 'en') => {
   const isSpanish = lang === 'es';
-  
+
   return {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Juan Francisco Dorado Torres",
     "givenName": "Juan Francisco",
     "familyName": "Dorado Torres",
-    "jobTitle": isSpanish ? "Desarrollador iOS Senior" : "Senior iOS Developer",
-    "description": isSpanish 
-      ? "Desarrollador iOS con más de 8 años de experiencia en Swift y SwiftUI. Especializado en arquitecturas escalables y mejores prácticas de desarrollo." 
-      : "iOS Developer with 8+ years of experience in Swift and SwiftUI. Specialized in scalable architectures and development best practices.",
+    "jobTitle": isSpanish ? "Senior Software Engineer (Especialista iOS)" : "Senior Software Engineer (iOS Specialist)",
+    "description": isSpanish
+      ? "Senior Software Engineer especialista en iOS con más de 8 años de experiencia en Swift y SwiftUI. Experto en arquitecturas escalables y mejores prácticas de desarrollo."
+      : "Senior Software Engineer specializing in iOS with 8+ years of experience in Swift and SwiftUI. Expert in scalable architectures and development best practices.",
     "url": "https://swiftyjourney.com",
     "image": "https://swiftyjourney.com/hero/taylor_wave.png",
     "sameAs": [
@@ -37,7 +37,7 @@ export const createPersonJsonLd = (lang: 'en' | 'es' = 'en') => {
 
 export const createOrganizationJsonLd = (lang: 'en' | 'es' = 'en') => {
   const isSpanish = lang === 'es';
-  
+
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -66,7 +66,7 @@ export const createOrganizationJsonLd = (lang: 'en' | 'es' = 'en') => {
 
 export const createWebsiteJsonLd = (lang: 'en' | 'es' = 'en') => {
   const isSpanish = lang === 'es';
-  
+
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
