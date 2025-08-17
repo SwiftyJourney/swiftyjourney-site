@@ -1,5 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
+import OptimizedImage from './OptimizedImage.astro';
+
 type Item = { text: string };
 type Props = {
   title: string;
@@ -29,10 +31,13 @@ const { title, subtitle, items, photoSrc } = Astro.props;
     </div>
 
     <div class="flex justify-center">
-      <img
+      <OptimizedImage
         src={photoSrc}
         alt="Juan Dorado"
+        width={320}
+        height={400}
         class="w-64 md:w-80 rounded-2xl shadow-sm"
+        sizes="(max-width: 768px) 256px, 320px"
       />
     </div>
   </div>

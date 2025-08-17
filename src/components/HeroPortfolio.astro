@@ -1,4 +1,7 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
+import taylorCoding from '/public/hero/taylor_coding.png';
+
 type Props = {
   title: string;
   subtitle: string;
@@ -31,6 +34,13 @@ const { title, subtitle, ctas } = Astro.props;
 
   <!-- Decorativo: taylor coding -->
   <div class="relative mt-12 flex items-center justify-center">
-    <img src="/hero/taylor_coding.png" alt="" class="w-64 md:w-80 opacity-80" />
+    <OptimizedImage 
+      src={taylorCoding}
+      alt="Taylor Swift coding illustration"
+      width={320}
+      height={320}
+      class="w-64 md:w-80 opacity-80"
+      sizes="(max-width: 768px) 256px, 320px"
+    />
   </div>
 </section>

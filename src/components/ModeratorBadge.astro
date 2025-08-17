@@ -1,5 +1,6 @@
 ---
 import EDLogo from "./EDLogo.astro";
+import OptimizedImage from './OptimizedImage.astro';
 
 type Props = {
   href?: string;
@@ -28,7 +29,14 @@ const {
       useInlineLogo ? (
         <EDLogo class="h-4 w-auto" />
       ) : (
-        <img src={logoSrc} alt="Essential Developer" class="h-4 w-auto" />
+        <OptimizedImage 
+          src={logoSrc} 
+          alt="Essential Developer" 
+          width={40}
+          height={16}
+          class="h-4 w-auto" 
+          loading="lazy"
+        />
       )
     }
     <span>{text}</span>

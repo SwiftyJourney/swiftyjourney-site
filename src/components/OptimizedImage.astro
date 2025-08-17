@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  width?: number;
+  height?: number;
+  quality?: number;
+  format?: 'webp' | 'avif' | 'png' | 'jpg' | 'jpeg';
+  loading?: 'lazy' | 'eager';
+  class?: string;
+  style?: string;
+  sizes?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  quality = 85, 
+  format = 'webp',
+  loading = 'lazy',
+  class: className,
+  style,
+  sizes
+} = Astro.props;
+
+// Generate multiple formats for better browser support
+const formats = ['webp', 'avif'];
+const fallbackFormat = 'jpg';
+---
+
+<picture>
+  {formats.map(fmt => (
+    <source
+      srcset={`${src}?format=${fmt}&quality=${quality}&width=${width}&height=${height}`}
+      type={`image/${fmt}`}
+      sizes={sizes}
+    />
+  ))}
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    quality={quality}
+    format={fallbackFormat}
+    loading={loading}
+    class={className}
+    style={style}
+    sizes={sizes}
+  />
+</picture>

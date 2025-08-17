@@ -12,4 +12,10 @@ export default defineConfig({
   },
 
   integrations: [icon()],
+  
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
+  }
 });
