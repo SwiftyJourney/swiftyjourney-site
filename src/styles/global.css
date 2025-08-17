@@ -8,4 +8,26 @@ html {
 
 body {
   font-feature-settings: "cv11", "ss01";
+  font-display: swap;
+}
+
+/* Optimize font loading */
+@font-face {
+  font-family: system-ui;
+  src: local("system-ui");
+  font-display: swap;
+}
+
+/* Improve icon rendering */
+.icon {
+  font-display: block;
+  font-variant: normal;
+}
+
+/* View transition performance */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }

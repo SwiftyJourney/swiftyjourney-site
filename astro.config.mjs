@@ -19,5 +19,14 @@ export default defineConfig({
     service: {
       entrypoint: 'astro/assets/services/sharp'
     }
+  },
+
+  experimental: {
+    clientPrerender: true
+  },
+
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover'
   }
 });
