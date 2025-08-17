@@ -105,6 +105,7 @@ const combinedJsonLd = {
     <link rel="alternate" href={SITE + "/"} hreflang="x-default" />
 
     <link rel="icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
     
     <!-- Performance optimizations -->
     <link rel="dns-prefetch" href="//github.com">
@@ -119,6 +120,19 @@ const combinedJsonLd = {
     <!-- Resource hints for better performance -->
     <link rel="preload" href="/logo-light.svg" as="image" type="image/svg+xml">
     <link rel="preload" href="/logo-dark.svg" as="image" type="image/svg+xml">
+    
+    <!-- Critical CSS inline for faster LCP -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { margin: 0; padding: 0; }
+      .header { position: sticky; top: 0; z-index: 50; }
+      .hero { padding: 4rem 1rem; text-align: center; }
+      .hero h1 { font-size: 3rem; font-weight: bold; margin: 0; }
+      @media (min-width: 768px) {
+        .hero { padding: 6rem 1rem; }
+        .hero h1 { font-size: 4.5rem; }
+      }
+    </style>
 
     <!-- View Transitions styles -->
     <style>
@@ -146,6 +160,21 @@ const combinedJsonLd = {
       }
     </style>
 
+    <!-- Service Worker registration -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+
     <!-- Evita "flash" de tema -->
     <script is:inline>
       (function () {
@@ -165,7 +194,7 @@ const combinedJsonLd = {
   >
     <!-- Header sticky + blur -->
     <header
-      class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70"
+      class="header sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70"
     >
       <div
         class="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between"
