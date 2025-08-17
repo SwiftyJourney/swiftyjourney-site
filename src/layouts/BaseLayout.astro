@@ -2,8 +2,10 @@
 import "../styles/global.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import LangToggle from "../components/LangToggle.astro";
+import SEO from "../components/SEO.astro";
 import { Icon } from "astro-icon/components";
 import EDLogo from "../components/EDLogo.astro";
+import { createPersonJsonLd, createOrganizationJsonLd, createWebsiteJsonLd } from "../data/seo-data";
 
 const SITE = "https://swiftyjourney.com";
 
@@ -12,6 +14,10 @@ const {
   title = "Swifty Journey",
   description = "iOS • Swift • SwiftUI",
   lang = "en",
+  seoTitle,
+  seoDescription,
+  seoImage,
+  seoType = "website",
 } = Astro.props;
 
 // Ruta actual (e.g. /en/affiliates)
@@ -64,24 +70,43 @@ const hrefEs = new URL(toEs, SITE).toString();
 
 // Home por idioma (para el logo)
 const homeHref = lang === "en" ? "/en/" : "/es/";
+
+// JSON-LD data
+const personJsonLd = createPersonJsonLd(lang);
+const organizationJsonLd = createOrganizationJsonLd(lang);
+const websiteJsonLd = createWebsiteJsonLd(lang);
+
+// Combine all structured data
+const combinedJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [personJsonLd, organizationJsonLd, websiteJsonLd]
+};
 ---
 
 <html lang={lang} class="min-h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    
+    <!-- SEO Component with enhanced meta tags -->
+    <SEO 
+      title={seoTitle || title}
+      description={seoDescription || description}
+      canonical={canonical}
+      image={seoImage}
+      type={seoType}
+      lang={lang}
+      jsonLd={combinedJsonLd}
+    />
 
-    <!-- Canonical + hreflang (por ruta actual) -->
-    <link rel="canonical" href={canonical} />
+    <!-- Hreflang (por ruta actual) -->
     <link rel="alternate" href={hrefEn} hreflang="en" />
     <link rel="alternate" href={hrefEs} hreflang="es-mx" />
     <link rel="alternate" href={SITE + "/"} hreflang="x-default" />
 
     <link rel="icon" href="/favicon.svg" />
 
-    <!-- Evita “flash” de tema -->
+    <!-- Evita "flash" de tema -->
     <script is:inline>
       (function () {
         const key = "theme";
@@ -93,13 +118,6 @@ const homeHref = lang === "en" ? "/en/" : "/es/";
         if (useDark) document.documentElement.classList.add("dark");
       })();
     </script>
-
-    <!-- Open Graph / Twitter básicos -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
   </head>
 
   <body
