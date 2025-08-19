@@ -20,16 +20,16 @@ const {
   seoType = "website",
 } = Astro.props;
 
-// Ruta actual (e.g. /en/affiliates)
+// Ruta actual (e.g. /en/blog)
 const path = Astro.url.pathname || "/";
 
 /** Diccionario de slugs por idioma (puedes agregar más pares) */
 const slugMap: Record<"en" | "es", Record<string, string>> = {
   en: {
-    affiliates: "afiliados", // /en/affiliates → /es/afiliados
+    // Agrega aquí más mapeos de rutas si necesitas
   },
   es: {
-    afiliados: "affiliates", // /es/afiliados → /en/affiliates
+    // Agrega aquí más mapeos de rutas si necesitas
   },
 };
 
@@ -41,7 +41,7 @@ function translateFirstSegment(
 ) {
   // quita el prefijo /en/ o /es/
   const bare = pathname.replace(/^\/(en|es)\//, "");
-  const parts = bare.split("/").filter(Boolean); // ["affiliates", "sub", ...]
+  const parts = bare.split("/").filter(Boolean); // ["blog", "sub", ...]
 
   if (parts.length === 0) {
     return `/${otherLang}/`; // home
@@ -115,7 +115,6 @@ const combinedJsonLd = {
     
     <!-- Prefetch critical routes -->
     <link rel="prefetch" href={lang === 'en' ? '/es/' : '/en/'}>
-    <link rel="prefetch" href={lang === 'en' ? '/en/affiliates/' : '/es/afiliados/'}>
     
     <!-- Resource hints for better performance -->
     <link rel="preload" href="/logo-light.svg" as="image" type="image/svg+xml">
