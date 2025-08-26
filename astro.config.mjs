@@ -22,11 +22,6 @@ export default defineConfig({
   },
 
   experimental: {
-    clientPrerender: true
-  },
-
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'hover'
+    clientPrerender: false
   }
 });
