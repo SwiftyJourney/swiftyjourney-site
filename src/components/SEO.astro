@@ -59,6 +59,9 @@ const fullImageUrl = new URL(image, Astro.site || 'https://swiftyjourney.com').t
 <meta name="author" content="Juan Francisco Dorado Torres" />
 <meta name="theme-color" content="#18181b" />
 
+<!-- Plausible Analytics -->
+<script defer data-domain="swiftyjourney.com" src="https://plausible.io/js/script.js"></script>
+
 {jsonLd && (
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 )}
