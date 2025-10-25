@@ -6,6 +6,7 @@ import SkillStrip from "../../components/SkillStrip.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.astro";
 import TechBadges from "../../components/TechBadges.astro";
 import PartnersStrip from "../../components/PartnersStrip.astro";
+import CallToAction from "../../components/CallToAction.astro";
 
 const altHref = "/en/";
 ---
@@ -20,30 +21,30 @@ const altHref = "/en/";
   seoType="profile"
 >
   <HeroPortfolio
-    title="Senior Software Engineer (Especialista iOS)"
-    subtitle="Construyo apps iOS mantenibles y testeables con arquitectura limpia, analítica y CI/CD."
+    title="Senior iOS Engineer"
+    subtitle="Apasionado por construir apps mantenibles y testeables usando SwiftUI, Clean Architecture y Swift Concurrency. Experiencia en integración de analítica, optimización de rendimiento y automatización de CI/CD. Actualmente compartiendo aprendizajes en SwiftyJourney Blog."
     ctas={[
       { label: "Ver trabajo", href: "#projects" },
+      { label: "Ir al blog", href: "https://blog.swiftyjourney.com/es", kind: "primary" },
       // { label: "Descargar CV", href: "/JuanDorado-CV.pdf", kind: "primary" }, // TODO: Agregar archivo CV
-      { label: "Ir al blog", href: "https://blog.swiftyjourney.com/es" },
     ]}
   />
 
   <ProblemSolver
-    title="Problem solver <coder>"
-    subtitle="Ingeniero en Sistemas Computacionales (TecNM Campus Laguna). Senior Software Engineer especializado en plataformas Apple con foco en iOS. Sigo buenas prácticas de la industria, arquitectura limpia y aprendizaje continuo."
+    title="Hola, soy Juan"
+    subtitle="Un Senior iOS Engineer de México con más de 11 años de experiencia construyendo apps iOS mantenibles y testeables. En algunos de mis roles, he liderado equipos iOS, mejorado pipelines de CI/CD en un 67%, e incrementado el rendimiento de apps en un 22%. Actualmente estoy explorando cómo la IA y herramientas de rendimiento como Instruments pueden mejorar los flujos de desarrollo móvil."
     items={[
       {
-        text: "10+ años: de UIKit a SwiftUI, adoptando Swift Concurrency (async/await).",
+        text: "11+ años de experiencia: de UIKit a SwiftUI, adoptando Swift Concurrency y patrones modernos.",
       },
       {
-        text: "Trabajo en equipo y liderazgo práctico de equipos iOS pequeños.",
+        text: "Liderazgo de equipos: líder práctico de equipos iOS, mentoreando desarrolladores y estableciendo mejores prácticas.",
       },
       {
-        text: "Entrega confiable: testabilidad, modularización estricta con SPM y CI/CD.",
+        text: "Impacto comprobado: pipelines de CI/CD 67% más rápidos, mejoras de rendimiento del 22%, y lanzamientos sin defectos.",
       },
       {
-        text: "Orientado a producto: analítica y observabilidad con Adobe y DataDog.",
+        text: "Aprendizaje continuo: actualmente explorando AI Engineering, dominio de Instruments, y SwiftData.",
       },
     ]}
     photoSrc="/hero/taylor_wave.png"
@@ -91,6 +92,11 @@ const altHref = "/en/";
       { icon: "mdi:language-swift", label: "Swift" },
       { icon: "mdi:gesture-tap-button", label: "SwiftUI" },
       { icon: "mdi:alpha-u-box", label: "UIKit" },
+      { icon: "mdi:database", label: "SwiftData" },
+      { icon: "mdi:database-outline", label: "CoreData" },
+      { icon: "mdi:flask-outline", label: "Swift Testing" },
+      { icon: "mdi:flash", label: "Swift Concurrency" },
+      { icon: "mdi:speedometer", label: "Instruments" },
       { icon: "mdi:source-branch", label: "SPM" },
       { icon: "mdi:cloud-sync-outline", label: "CI/CD" },
       { icon: "mdi:github", label: "GitHub" },
@@ -102,6 +108,18 @@ const altHref = "/en/";
 
   <ProjectsGrid
     projects={[
+      {
+        title: "BTC Price Study Case",
+        desc: "Aplicando Clean Architecture y TDD para construir una app modular desde historias de usuario hasta lógica de negocio testeada.",
+        tags: ["Swift", "Clean Architecture", "TDD"],
+        href: "https://github.com/SwiftyJourney/BTCPrice",
+      },
+      {
+        title: "MyMangasApp",
+        desc: "App modular en SwiftUI usando SwiftData, Swift Testing, y Keychain — proyecto final del Swift Developer Program 2025.",
+        tags: ["SwiftUI", "SwiftData", "Testing"],
+        href: "https://github.com/SwiftyJourney/MyMangasApp",
+      },
       {
         title: "OneDarkTheme",
         desc: "Tema One Dark para Xcode.",
@@ -122,6 +140,15 @@ const altHref = "/en/";
       },
     ]}
   />
+
+  <!-- TODO: Uncomment when ready to show CTA
+  <CallToAction
+    title="Conectemos"
+    subtitle="Actualmente abierto a entrevistas técnicas, oportunidades de charlas y colaboraciones."
+    ctaLabel="Contáctame"
+    ctaHref="https://x.com/jfdoradotr"
+  />
+  -->
 
   <PartnersStrip
     title="Recursos de Desarrollo"

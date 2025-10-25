@@ -16,13 +16,15 @@ const { title, subtitle, ctas } = Astro.props;
     <slot name="meta" />
   </div>
 
-  <div class="mt-8 flex items-center justify-center gap-3">
+  <div class="mt-8 flex items-center justify-center gap-3 flex-wrap">
     {
       ctas.map(({ label, href, kind = "ghost" }) => (
         <a
           href={href}
-          class={`px-4 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700
-                 ${kind === "primary" ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900" : "hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}
+          class={`inline-flex items-center gap-2 px-6 py-3 font-medium rounded-lg transition-colors
+                 ${kind === "primary"
+                   ? "bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/30"
+                   : "border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}
         >
           {label}
         </a>

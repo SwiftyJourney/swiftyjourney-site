@@ -6,6 +6,7 @@ import SkillStrip from "../../components/SkillStrip.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.astro";
 import TechBadges from "../../components/TechBadges.astro";
 import PartnersStrip from "../../components/PartnersStrip.astro";
+import CallToAction from "../../components/CallToAction.astro";
 
 const altHref = "/es/";
 ---
@@ -20,30 +21,30 @@ const altHref = "/es/";
 	seoType="profile"
 >
 	<HeroPortfolio
-		title="Senior Software Engineer (iOS Specialist)"
-		subtitle="I build maintainable, testable iOS apps with clean architecture, analytics, and CI/CD."
+		title="Senior iOS Engineer"
+		subtitle="Passionate about building maintainable and testable apps using SwiftUI, Clean Architecture, and Swift Concurrency. Experienced in analytics integration, performance tuning, and CI/CD automation. Currently sharing learnings at SwiftyJourney Blog."
 		ctas={[
 			{ label: "See work", href: "#projects" },
+			{ label: "Go to blog", href: "https://blog.swiftyjourney.com/en", kind: "primary" },
 			// { label: "Download CV", href: "/JuanDorado-CV.pdf", kind: "primary" }, // TODO: Add CV file
-			{ label: "Go to blog", href: "https://blog.swiftyjourney.com/en" },
 		]}
 	/>
 
 	<ProblemSolver
-		title="Problem solver <coder>"
-		subtitle="Computer Systems Engineer (TecNM Campus Laguna). Senior Software Engineer specialized in Apple platforms with focus on iOS. I follow industry best practices, clean architecture, and continuous learning."
+		title="Hi, I'm Juan"
+		subtitle="A Senior iOS Engineer from Mexico with over 11 years of experience building maintainable and testable iOS apps. In some of my roles, I've led iOS teams, improved CI/CD pipelines by 67%, and boosted app performance by 22%. I'm currently exploring how AI and performance tools like Instruments can improve mobile development workflows."
 		items={[
 			{
-				text: "10+ years: from UIKit to SwiftUI, adopting Swift Concurrency (async/await).",
+				text: "11+ years of experience: from UIKit to SwiftUI, adopting Swift Concurrency and modern patterns.",
 			},
 			{
-				text: "Team player and hands-on leader of small iOS teams.",
+				text: "Team leadership: hands-on leader of iOS teams, mentoring developers and establishing best practices.",
 			},
 			{
-				text: "Reliable delivery: testability, strict SPM modularization, and CI/CD.",
+				text: "Proven impact: 67% faster CI/CD pipelines, 22% performance improvements, and zero-defect releases.",
 			},
 			{
-				text: "Product-oriented: analytics and observability with Adobe and DataDog.",
+				text: "Continuous learning: currently exploring AI Engineering, Instruments mastery, and SwiftData.",
 			},
 		]}
 		photoSrc="/hero/taylor_wave.png"
@@ -91,6 +92,11 @@ const altHref = "/es/";
 			{ icon: "mdi:language-swift", label: "Swift" },
 			{ icon: "mdi:gesture-tap-button", label: "SwiftUI" },
 			{ icon: "mdi:alpha-u-box", label: "UIKit" },
+			{ icon: "mdi:database", label: "SwiftData" },
+			{ icon: "mdi:database-outline", label: "CoreData" },
+			{ icon: "mdi:flask-outline", label: "Swift Testing" },
+			{ icon: "mdi:flash", label: "Swift Concurrency" },
+			{ icon: "mdi:speedometer", label: "Instruments" },
 			{ icon: "mdi:source-branch", label: "SPM" },
 			{ icon: "mdi:cloud-sync-outline", label: "CI/CD" },
 			{ icon: "mdi:github", label: "GitHub" },
@@ -102,6 +108,18 @@ const altHref = "/es/";
 
 	<ProjectsGrid
 		projects={[
+			{
+				title: "BTC Price Study Case",
+				desc: "Applying Clean Architecture and TDD to build a modular app from user stories to tested business logic.",
+				tags: ["Swift", "Clean Architecture", "TDD"],
+				href: "https://github.com/SwiftyJourney/BTCPrice",
+			},
+			{
+				title: "MyMangasApp",
+				desc: "Modular SwiftUI app using SwiftData, Swift Testing, and Keychain — final project for the Swift Developer Program 2025.",
+				tags: ["SwiftUI", "SwiftData", "Testing"],
+				href: "https://github.com/SwiftyJourney/MyMangasApp",
+			},
 			{
 				title: "OneDarkTheme",
 				desc: "One Dark theme for Xcode.",
@@ -122,6 +140,15 @@ const altHref = "/es/";
 			},
 		]}
 	/>
+
+	<!-- TODO: Uncomment when ready to show CTA
+	<CallToAction
+		title="Let's Connect"
+		subtitle="Currently open for technical interviews, speaking opportunities, and collaborations."
+		ctaLabel="Get in touch"
+		ctaHref="https://x.com/jfdoradotr"
+	/>
+	-->
 
 	<PartnersStrip
 		title="Development Resources"
