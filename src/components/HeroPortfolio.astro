@@ -9,22 +9,22 @@ const { title, subtitle, ctas } = Astro.props;
 ---
 
 <section class="py-16 md:py-24 text-center">
-  <h1 class="text-5xl md:text-7xl font-bold tracking-tight">{title}</h1>
-  <p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto">{subtitle}</p>
+  <h1 class="text-5xl md:text-7xl font-bold tracking-tight" data-aos="fade-up">{title}</h1>
+  <p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">{subtitle}</p>
 
   <div class="mt-4 flex items-center justify-center gap-3">
     <slot name="meta" />
   </div>
 
-  <div class="mt-8 flex items-center justify-center gap-3 flex-wrap">
+  <div class="mt-8 flex items-center justify-center gap-3 flex-wrap" data-aos="fade-up" data-aos-delay="200">
     {
       ctas.map(({ label, href, kind = "ghost" }) => (
         <a
           href={href}
-          class={`inline-flex items-center gap-2 px-6 py-3 font-medium rounded-lg transition-colors
+          class={`ripple-button inline-flex items-center gap-2 px-6 py-3 font-medium rounded-lg transition-all duration-300 relative overflow-hidden
                  ${kind === "primary"
-                   ? "bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/30"
-                   : "border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}
+                   ? "bg-orange-500 hover:bg-orange-600 hover:shadow-xl hover:scale-105 text-white shadow-lg shadow-orange-500/30"
+                   : "border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105"}`}
         >
           {label}
         </a>
@@ -32,8 +32,46 @@ const { title, subtitle, ctas } = Astro.props;
     }
   </div>
 
+  <style>
+    .ripple-button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .ripple-button:active::before {
+      width: 300px;
+      height: 300px;
+      transition: width 0s, height 0s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ripple-button {
+        transition: none;
+      }
+      .ripple-button:hover {
+        transform: none;
+      }
+      .ripple-button::before {
+        display: none;
+      }
+    }
+  </style>
+
   <!-- Decorativo: taylor coding -->
-  <div class="relative mt-12 flex items-center justify-center" transition:name="hero-image">
+  <div class="relative mt-12 flex items-center justify-center" transition:name="hero-image" data-aos="zoom-in" data-aos-delay="300">
     <img 
       src="/hero/taylor_coding.png"
       alt="Taylor Swift coding illustration"
