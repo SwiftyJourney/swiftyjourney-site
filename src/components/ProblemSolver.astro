@@ -20,7 +20,7 @@ const { title, subtitle, items, photoSrc } = Astro.props;
 
       <ul class="mt-6 space-y-3">
         {
-          items.map((i) => (
+          items.map((i, index) => (
             <li class="flex items-start gap-3">
               <Icon name="mdi:check-circle-outline" class="mt-1" />
               <span class="opacity-90">{i.text}</span>

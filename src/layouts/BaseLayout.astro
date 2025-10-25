@@ -159,21 +159,6 @@ const combinedJsonLd = {
       }
     </style>
 
-    <!-- AOS (Animate on Scroll) -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-    <script is:inline src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
-        AOS.init({
-          duration: 800,
-          easing: 'ease-out-cubic',
-          once: true,
-          offset: 50,
-          disable: 'mobile'
-        });
-      });
-    </script>
-
     <!-- Service Worker registration -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
