@@ -139,25 +139,40 @@ const combinedJsonLd = {
       ::view-transition-new(root) {
         animation-duration: 0.3s;
       }
-      
+
       ::view-transition-old(root) {
         animation-name: fade-out;
       }
-      
+
       ::view-transition-new(root) {
         animation-name: fade-in;
       }
-      
+
       @keyframes fade-out {
         from { opacity: 1; }
         to { opacity: 0; }
       }
-      
+
       @keyframes fade-in {
         from { opacity: 0; }
         to { opacity: 1; }
       }
     </style>
+
+    <!-- AOS (Animate on Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script is:inline src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 50,
+          disable: 'mobile'
+        });
+      });
+    </script>
 
     <!-- Service Worker registration -->
     <script is:inline>
