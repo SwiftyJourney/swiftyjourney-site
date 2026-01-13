@@ -21,7 +21,7 @@ const { title, subtitle, ctas } = Astro.props;
       ctas.map(({ label, href, kind = "ghost" }) => (
         <a
           href={href}
-          class={`ripple-button inline-flex items-center gap-2 px-6 py-3 font-medium rounded-lg transition-all duration-300 relative overflow-hidden
+          class={`ripple-button inline-flex items-center gap-2 px-6 py-3 font-medium rounded-xl transition-all duration-300 relative overflow-hidden
                  ${kind === "primary"
                    ? "bg-orange-500 hover:bg-orange-600 hover:shadow-xl hover:scale-105 text-white shadow-lg shadow-orange-500/30"
                    : "border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105"}`}

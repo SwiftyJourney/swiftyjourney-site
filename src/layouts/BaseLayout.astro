@@ -222,6 +222,14 @@ const combinedJsonLd = {
         </a>
 
         <nav class="flex items-center gap-2" transition:persist="navigation">
+          <a
+            href={lang === "en"
+              ? "https://blog.swiftyjourney.com/en/"
+              : "https://blog.swiftyjourney.com/es/"}
+            class="px-3 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-colors"
+          >
+            Blog →
+          </a>
           <LangToggle lang={lang} toEn={toEn} toEs={toEs} />
           <div class="ml-2">
             <ThemeToggle />
@@ -241,7 +249,7 @@ const combinedJsonLd = {
             href="https://github.com/swiftyjourney"
             target="_blank"
             rel="noopener me"
-            class="hover:opacity-100 opacity-80"
+            class="hover:opacity-100 opacity-80 transition-opacity"
           >
             <Icon name="mdi:github" />
           </a>
@@ -249,7 +257,7 @@ const combinedJsonLd = {
             href="https://x.com/jfdoradotr"
             target="_blank"
             rel="noopener me"
-            class="hover:opacity-100 opacity-80"
+            class="hover:opacity-100 opacity-80 transition-opacity"
           >
             <Icon name="mdi:twitter" />
           </a>
@@ -257,7 +265,7 @@ const combinedJsonLd = {
             href="https://linkedin.com/in/juanfranciscodoradotorres"
             target="_blank"
             rel="noopener me"
-            class="hover:opacity-100 opacity-80"
+            class="hover:opacity-100 opacity-80 transition-opacity"
           >
             <Icon name="mdi:linkedin" />
           </a>
@@ -266,7 +274,7 @@ const combinedJsonLd = {
           href="https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/"
           target="_blank"
           rel="noopener"
-          class="inline-flex rounded-full p-[1px] bg-gradient-to-r from-orange-500 via-amber-500 to-red-500 hover:opacity-100 opacity-80"
+          class="inline-flex rounded-full p-[1px] bg-gradient-to-r from-orange-500 via-amber-500 to-red-500 hover:opacity-100 opacity-80 transition-opacity"
         >
           <span
             class="inline-flex items-center gap-2 rounded-full px-3 py-1 bg-zinc-900 text-white text-xs leading-none"
