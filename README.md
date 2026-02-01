@@ -18,6 +18,14 @@ npm run build
 npm run preview
 ```
 
+### Troubleshooting
+- If `astro build` fails with an `ImageNotFound` error after moving content, clear Astro's content cache:
+  ```bash
+  rm -rf .astro node_modules/.astro
+  npm run build
+  ```
+- CI/CD note: `npm run build` runs `prebuild` to clear Astro caches automatically (helps on Vercel).
+
 ## 🌐 Multilingual Support
 
 The website supports both English and Spanish:
