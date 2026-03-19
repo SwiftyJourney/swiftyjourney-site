@@ -4,7 +4,6 @@ import ThemeToggle from "../components/ThemeToggle.astro";
 import LangToggle from "../components/LangToggle.astro";
 import SEO from "../components/SEO.astro";
 import { Icon } from "astro-icon/components";
-import EDLogo from "../components/EDLogo.astro";
 import { createPersonJsonLd, createOrganizationJsonLd, createWebsiteJsonLd } from "../data/seo-data";
 
 const SITE = "https://swiftyjourney.com";
@@ -270,19 +269,6 @@ const combinedJsonLd = {
             <Icon name="mdi:linkedin" />
           </a>
         </div>
-        <a
-          href="https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex rounded-full p-[1px] bg-gradient-to-r from-orange-500 via-amber-500 to-red-500 hover:opacity-100 opacity-80 transition-opacity"
-        >
-          <span
-            class="inline-flex items-center gap-2 rounded-full px-3 py-1 bg-zinc-900 text-white text-xs leading-none"
-          >
-            <EDLogo class="h-4 w-auto" />
-            <span>Moderator — iOS Lead Essentials (2022)</span>
-          </span>
-        </a>
         <p class="text-sm">
           © {new Date().getFullYear()} Swifty Journey — Created by Juan F. Dorado.
         </p>

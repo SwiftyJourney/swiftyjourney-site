@@ -2,11 +2,11 @@
 import ProjectCard from "./ProjectCard.astro";
 
 type Project = { title: string; desc: string; tags?: string[]; href: string };
-type Props = { title?: string; projects: Project[] };
-const { title = "My {dev} projects", projects } = Astro.props;
+type Props = { id?: string; title?: string; projects: Project[] };
+const { id = "projects", title = "My {dev} projects", projects } = Astro.props;
 ---
 
-<section class="py-16 md:py-24" id="projects">
+<section class="py-16 md:py-24" id={id}>
   <h2 class="text-3xl font-semibold tracking-tight text-center">{title}</h2>
   <div class="mt-8 grid gap-6 md:grid-cols-3">
     {

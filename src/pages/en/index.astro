@@ -2,11 +2,12 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroPortfolio from "../../components/HeroPortfolio.astro";
 import ProblemSolver from "../../components/ProblemSolver.astro";
+import CredentialStrip from "../../components/CredentialStrip.astro";
 import SkillStrip from "../../components/SkillStrip.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.astro";
 import TechBadges from "../../components/TechBadges.astro";
 import PartnersStrip from "../../components/PartnersStrip.astro";
-import CallToAction from "../../components/CallToAction.astro";
+import ConnectSection from "../../components/ConnectSection.astro";
 
 const altHref = "/es/";
 ---
@@ -22,32 +23,69 @@ const altHref = "/es/";
 >
 	<HeroPortfolio
 		title="Senior iOS Engineer"
-		subtitle="Passionate about building maintainable and testable apps using SwiftUI, Clean Architecture, and Swift Concurrency. Experienced in analytics integration, performance tuning, and CI/CD automation. Currently sharing learnings at SwiftyJourney Blog."
+		subtitle="I build maintainable, testable iOS apps with SwiftUI and Clean Architecture. I share what I learn at SwiftyJourney Blog."
 		ctas={[
-			{ label: "See work", href: "#projects" },
-			{ label: "Go to blog", href: "https://blog.swiftyjourney.com/en", kind: "primary" },
-			// { label: "Download CV", href: "/JuanDorado-CV.pdf", kind: "primary" }, // TODO: Add CV file
+			{ label: "See what I build", href: "#projects" },
+			{ label: "Read the blog", href: "https://blog.swiftyjourney.com/en", kind: "primary" },
+			{ label: "Get in touch", href: "#connect" },
 		]}
 	/>
 
 	<ProblemSolver
 		title="Hi, I'm Juan"
-		subtitle="A Senior iOS Engineer from Mexico with over 11 years of experience building maintainable and testable iOS apps. In some of my roles, I've led iOS teams, improved CI/CD pipelines by 67%, and boosted app performance by 22%. I'm currently exploring how AI and performance tools like Instruments can improve mobile development workflows."
+		subtitle="I'm a Senior iOS Engineer from Mexico with 11+ years building iOS apps — from UIKit to SwiftUI, from solo projects to leading teams. Right now I'm exploring how AI tooling and performance instrumentation can level up mobile development."
 		items={[
 			{
-				text: "11+ years of experience: from UIKit to SwiftUI, adopting Swift Concurrency and modern patterns.",
+				text: "From UIKit to SwiftUI — adopting Swift Concurrency and modern patterns along the way.",
 			},
 			{
-				text: "Team leadership: hands-on leader of iOS teams, mentoring developers and establishing best practices.",
+				text: "I enjoy mentoring developers and establishing architecture best practices in teams.",
 			},
 			{
-				text: "Proven impact: 67% faster CI/CD pipelines, 22% performance improvements, and zero-defect releases.",
+				text: "Currently exploring AI Engineering, Instruments mastery, and SwiftData.",
 			},
 			{
-				text: "Continuous learning: currently exploring AI Engineering, Instruments mastery, and SwiftData.",
+				text: "Open source contributor and community moderator.",
 			},
 		]}
 		photoSrc="/hero/taylor_wave.png"
+	/>
+
+	<CredentialStrip
+		title="Credentials & Training"
+		credentials={[
+			{
+				logoComponent: "EDLogo",
+				program: "iOS Lead Essentials",
+				role: "Moderator",
+				year: "2022",
+				href: "https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/",
+			},
+			{
+				logoSrc: "/credentials/apple-coding-academy.webp",
+				program: "Swift Developer Program",
+				year: "2025",
+				href: "https://acoding.academy/formaciones/swift-developer-program/",
+			},
+			{
+				logoSrc: "/credentials/apple-coding-academy.webp",
+				program: "Swift Accessibility Program",
+				year: "2025",
+				href: "https://acoding.academy/",
+			},
+			{
+				logoSrc: "/credentials/apple-coding-academy.webp",
+				program: "Swift Refresh Workshop",
+				year: "2025",
+				href: "https://acoding.academy/",
+			},
+			{
+				logoSrc: "/credentials/apple-coding-academy.webp",
+				program: "Swift Mastery Program",
+				year: "In progress · 2026",
+				href: "https://acoding.academy/formaciones/swift-mastery-program/",
+			},
+		]}
 	/>
 
 	<SkillStrip
@@ -107,24 +145,25 @@ const altHref = "/es/";
 	/>
 
 	<ProjectsGrid
+		title="Open Source"
 		projects={[
 			{
+				title: "TAXI",
+				desc: "Modular architecture template for iOS using Clean Architecture, TDD, and SPM.",
+				tags: ["Swift", "Architecture", "SPM"],
+				href: "https://github.com/SwiftyJourney/TAXI",
+			},
+			{
 				title: "BTC Price Study Case",
-				desc: "Applying Clean Architecture and TDD to build a modular app from user stories to tested business logic.",
+				desc: "Clean Architecture and TDD from user stories to tested business logic.",
 				tags: ["Swift", "Clean Architecture", "TDD"],
-				href: "https://github.com/SwiftyJourney/BTCPrice",
+				href: "https://github.com/SwiftyJourney/btc-price-study-case",
 			},
 			{
 				title: "MyMangasApp",
-				desc: "Modular SwiftUI app using SwiftData, Swift Testing, and Keychain — final project for the Swift Developer Program 2025.",
+				desc: "SwiftUI app with SwiftData, Swift Testing, and Keychain — Swift Developer Program 2025 final project.",
 				tags: ["SwiftUI", "SwiftData", "Testing"],
-				href: "https://github.com/SwiftyJourney/MyMangasApp",
-			},
-			{
-				title: "OneDarkTheme",
-				desc: "One Dark theme for Xcode.",
-				tags: ["Swift", "Xcode"],
-				href: "https://github.com/SwiftyJourney/OneDarkTheme",
+				href: "https://github.com/jfdoradotr/my-mangas-app-study-case",
 			},
 			{
 				title: "XCSnippets",
@@ -134,21 +173,37 @@ const altHref = "/es/";
 			},
 			{
 				title: "I-VIPER",
-				desc: "Template to bootstrap VIPER.",
+				desc: "Template to bootstrap VIPER modules.",
 				tags: ["Makefile", "Architecture"],
 				href: "https://github.com/SwiftyJourney/I-VIPER",
 			},
 		]}
 	/>
 
-	<!-- TODO: Uncomment when ready to show CTA
-	<CallToAction
-		title="Let's Connect"
-		subtitle="Currently open for technical interviews, speaking opportunities, and collaborations."
-		ctaLabel="Get in touch"
-		ctaHref="https://x.com/jfdoradotr"
+	<ProjectsGrid
+		id="claude-code-skills"
+		title="Claude Code Skills"
+		projects={[
+			{
+				title: "iOS Architecture Expert",
+				desc: "Claude Code skill for iOS architecture guidance, SOLID principles, and modular design.",
+				tags: ["Claude Code", "AI", "Architecture"],
+				href: "https://github.com/SwiftyJourney/ios-architecture-expert-skill",
+			},
+			{
+				title: "SwiftUI Expert",
+				desc: "Claude Code skill for SwiftUI best practices and modern declarative UI patterns.",
+				tags: ["Claude Code", "AI", "SwiftUI"],
+				href: "https://github.com/SwiftyJourney/swiftui-expert-skill",
+			},
+			{
+				title: "Requirements Engineering",
+				desc: "Claude Code skill for transforming requirements into user stories and specifications.",
+				tags: ["Claude Code", "AI", "Engineering"],
+				href: "https://github.com/SwiftyJourney/requirements-engineering-skill",
+			},
+		]}
 	/>
-	-->
 
 	<PartnersStrip
 		title="Development Resources"
@@ -157,5 +212,22 @@ const altHref = "/es/";
 		ctaLabel="See resources"
 		desc="Select your dev pill — dive into curated tools and resources for iOS and beyond."
 		disclaimer="Some links may be affiliate — you support Swifty Journey without extra cost."
+	/>
+
+	<ConnectSection
+		title="Interested in working together?"
+		subtitle="I enjoy collaborating on challenging iOS projects, reviewing architecture, and helping developers grow."
+		areas={[
+			{ icon: "mdi:cellphone-link", title: "iOS Collaboration", desc: "Building and scaling Swift/SwiftUI apps with clean architecture." },
+			{ icon: "mdi:source-branch-check", title: "Code Reviews & Architecture", desc: "Second opinions on modularization, testing strategies, and CI/CD." },
+			{ icon: "mdi:account-group", title: "Mentoring", desc: "Guiding developers through iOS best practices and career growth." },
+		]}
+		metrics={[
+			{ value: "11+", label: "years experience" },
+			{ value: "67%", label: "CI/CD improvement" },
+			{ value: "22%", label: "performance boost" },
+		]}
+		ctaLabel="Let's connect"
+		ctaHref="https://linkedin.com/in/juanfranciscodoradotorres"
 	/>
 </BaseLayout>
