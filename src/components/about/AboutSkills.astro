@@ -1,0 +1,29 @@
+---
+import SectionHeading from "../SectionHeading.astro";
+import type { SkillGroup } from "../../data/about-content";
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  groups: SkillGroup[];
+};
+
+const { eyebrow, title, groups } = Astro.props;
+---
+
+<section class="py-20 md:py-28 border-t border-border">
+  <SectionHeading eyebrow={eyebrow} title={title} />
+
+  <div class="mt-14 space-y-12">
+    {groups.map((group) => (
+      <div class="grid md:grid-cols-[18rem_1fr] gap-3 md:gap-10 items-baseline">
+        <h3 class="text-xl md:text-2xl font-semibold text-text tracking-tight">
+          {group.heading}
+        </h3>
+        <p class="text-lg text-text-muted leading-relaxed">
+          {group.items.join(" · ")}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

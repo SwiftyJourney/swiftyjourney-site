@@ -1,0 +1,29 @@
+---
+import Button from "./Button.astro";
+
+type Props = {
+  heading: string;
+  body?: string;
+  ctaLabel: string;
+  ctaHref: string;
+  external?: boolean;
+};
+
+const { heading, body, ctaLabel, ctaHref, external = false } = Astro.props;
+---
+
+<section class="py-24 md:py-32 border-t border-border text-center">
+  <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-text max-w-2xl mx-auto">
+    {heading}
+  </h2>
+  {body && (
+    <p class="mt-5 text-lg text-text-muted max-w-xl mx-auto leading-relaxed">
+      {body}
+    </p>
+  )}
+  <div class="mt-10">
+    <Button href={ctaHref} kind="primary" size="lg" external={external}>
+      {ctaLabel}
+    </Button>
+  </div>
+</section>

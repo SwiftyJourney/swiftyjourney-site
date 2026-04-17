@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import ThemeToggle from "../components/ThemeToggle.astro";
 import LangToggle from "../components/LangToggle.astro";
 import SEO from "../components/SEO.astro";
 import { Icon } from "astro-icon/components";
@@ -8,7 +7,6 @@ import { createPersonJsonLd, createOrganizationJsonLd, createWebsiteJsonLd } fro
 
 const SITE = "https://swiftyjourney.com";
 
-// Props por página
 const {
   title = "Swifty Journey",
   description = "iOS • Swift • SwiftUI",
@@ -19,31 +17,23 @@ const {
   seoType = "website",
 } = Astro.props;
 
-// Ruta actual (e.g. /en/blog)
 const path = Astro.url.pathname || "/";
 
-/** Diccionario de slugs por idioma (puedes agregar más pares) */
 const slugMap: Record<"en" | "es", Record<string, string>> = {
-  en: {
-    // Agrega aquí más mapeos de rutas si necesitas
-  },
-  es: {
-    // Agrega aquí más mapeos de rutas si necesitas
-  },
+  en: {},
+  es: {},
 };
 
-/** Traduce el primer segmento de una ruta al otro idioma */
 function translateFirstSegment(
   currentLang: "en" | "es",
   otherLang: "en" | "es",
   pathname: string,
 ) {
-  // quita el prefijo /en/ o /es/
   const bare = pathname.replace(/^\/(en|es)\//, "");
-  const parts = bare.split("/").filter(Boolean); // ["blog", "sub", ...]
+  const parts = bare.split("/").filter(Boolean);
 
   if (parts.length === 0) {
-    return `/${otherLang}/`; // home
+    return `/${otherLang}/`;
   }
 
   const first = parts[0];
@@ -58,24 +48,22 @@ const isES = path.startsWith("/es/");
 const currentLang = isEN ? "en" : "es";
 const otherLang = currentLang === "es" ? "en" : "es";
 
-// URLs alternas correctas (prefijo + slug traducido)
 const toEn = isEN ? path : translateFirstSegment("es", "en", path);
 const toEs = isES ? path : translateFirstSegment("en", "es", path);
 
-// Canonical y hreflang (por ruta actual y su alterna)
 const canonical = new URL(path, SITE).toString();
 const hrefEn = new URL(toEn, SITE).toString();
 const hrefEs = new URL(toEs, SITE).toString();
 
-// Home por idioma (para el logo)
 const homeHref = lang === "en" ? "/en/" : "/es/";
+const aboutHref = lang === "en" ? "/en/about/" : "/es/about/";
+const blogHref = lang === "en" ? "https://blog.swiftyjourney.com/en/" : "https://blog.swiftyjourney.com/es/";
+const aboutLabel = lang === "en" ? "About" : "Sobre mí";
 
-// JSON-LD data
 const personJsonLd = createPersonJsonLd(lang);
 const organizationJsonLd = createOrganizationJsonLd(lang);
 const websiteJsonLd = createWebsiteJsonLd(lang);
 
-// Combine all structured data
 const combinedJsonLd = {
   "@context": "https://schema.org",
   "@graph": [personJsonLd, organizationJsonLd, websiteJsonLd]
@@ -86,9 +74,8 @@ const combinedJsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    
-    <!-- SEO Component with enhanced meta tags -->
-    <SEO 
+
+    <SEO
       title={seoTitle || title}
       description={seoDescription || description}
       canonical={canonical}
@@ -98,41 +85,29 @@ const combinedJsonLd = {
       jsonLd={combinedJsonLd}
     />
 
-    <!-- Hreflang (por ruta actual) -->
     <link rel="alternate" href={hrefEn} hreflang="en" />
     <link rel="alternate" href={hrefEs} hreflang="es-mx" />
     <link rel="alternate" href={SITE + "/"} hreflang="x-default" />
 
     <link rel="icon" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.json" />
-    
-    <!-- Performance optimizations -->
+
     <link rel="dns-prefetch" href="//github.com">
     <link rel="dns-prefetch" href="//x.com">
     <link rel="dns-prefetch" href="//linkedin.com">
-    <link rel="preconnect" href="https://iosacademy.essentialdeveloper.com">
-    
-    <!-- Prefetch critical routes -->
+    <link rel="dns-prefetch" href="//blog.swiftyjourney.com">
+
     <link rel="prefetch" href={lang === 'en' ? '/es/' : '/en/'}>
-    
-    <!-- Resource hints for better performance -->
-    <link rel="preload" href="/logo-light.svg" as="image" type="image/svg+xml">
-    <link rel="preload" href="/logo-dark.svg" as="image" type="image/svg+xml">
-    
-    <!-- Critical CSS inline for faster LCP -->
+
+    <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+
     <style>
-      /* Critical above-the-fold styles */
-      body { margin: 0; padding: 0; }
+      body { margin: 0; padding: 0; background: #F5F3EF; color: #0B0B0C; }
       .header { position: sticky; top: 0; z-index: 50; }
-      .hero { padding: 4rem 1rem; text-align: center; }
-      .hero h1 { font-size: 3rem; font-weight: bold; margin: 0; }
-      @media (min-width: 768px) {
-        .hero { padding: 6rem 1rem; }
-        .hero h1 { font-size: 4.5rem; }
-      }
     </style>
 
-    <!-- View Transitions styles -->
     <style>
       ::view-transition-old(root),
       ::view-transition-new(root) {
@@ -157,42 +132,11 @@ const combinedJsonLd = {
         to { opacity: 1; }
       }
     </style>
-
-    <!-- Service Worker registration -->
-    <script is:inline>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-              console.log('SW registration failed: ', registrationError);
-            });
-        });
-      }
-    </script>
-
-    <!-- Evita "flash" de tema -->
-    <script is:inline>
-      (function () {
-        const key = "theme";
-        const saved = localStorage.getItem(key);
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
-        const useDark = (saved ?? (prefersDark ? "dark" : "light")) === "dark";
-        if (useDark) document.documentElement.classList.add("dark");
-      })();
-    </script>
   </head>
 
-  <body
-    class="bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 antialiased"
-  >
-    <!-- Header sticky + blur -->
+  <body class="antialiased">
     <header
-      class="header sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70"
+      class="header sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-bg/70"
     >
       <div
         class="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between"
@@ -203,36 +147,29 @@ const combinedJsonLd = {
           aria-label="Swifty Journey — Home"
           transition:persist="logo"
         >
-          <!-- Logo light/dark (mismo archivo para ambos idiomas) -->
           <img
-            src="/logo-light.svg"
+            src="/logo.svg"
             alt="Swifty Journey"
             width="192"
             height="48"
-            class="h-12 w-auto block dark:hidden"
-          />
-          <img
-            src="/logo-dark.svg"
-            alt="Swifty Journey"
-            width="192"
-            height="48"
-            class="h-12 w-auto hidden dark:block"
+            class="h-10 md:h-12 w-auto block"
           />
         </a>
 
-        <nav class="flex items-center gap-2" transition:persist="navigation">
+        <nav class="flex items-center gap-1 md:gap-2" transition:persist="navigation">
           <a
-            href={lang === "en"
-              ? "https://blog.swiftyjourney.com/en/"
-              : "https://blog.swiftyjourney.com/es/"}
-            class="px-3 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-colors"
+            href={aboutHref}
+            class="px-3 py-1.5 text-sm text-text-muted hover:text-text rounded-md transition-colors"
+          >
+            {aboutLabel}
+          </a>
+          <a
+            href={blogHref}
+            class="px-3 py-1.5 text-sm text-text-muted hover:text-text rounded-md transition-colors"
           >
             Blog →
           </a>
           <LangToggle lang={lang} toEn={toEn} toEs={toEs} />
-          <div class="ml-2">
-            <ThemeToggle />
-          </div>
         </nav>
       </div>
     </header>
@@ -241,14 +178,15 @@ const combinedJsonLd = {
       <slot />
     </main>
 
-    <footer class="max-w-6xl mx-auto px-4 py-10 opacity-80">
-      <div class="flex flex-col items-center gap-4">
-        <div class="flex gap-4 text-2xl">
+    <footer class="max-w-6xl mx-auto px-4 py-12 border-t border-border mt-20">
+      <div class="flex flex-col items-center gap-4 text-text-muted">
+        <div class="flex gap-5 text-2xl">
           <a
             href="https://github.com/swiftyjourney"
             target="_blank"
             rel="noopener me"
-            class="hover:opacity-100 opacity-80 transition-opacity"
+            aria-label="GitHub"
+            class="hover:text-text transition-colors"
           >
             <Icon name="mdi:github" />
           </a>
@@ -256,7 +194,8 @@ const combinedJsonLd = {
             href="https://x.com/jfdoradotr"
             target="_blank"
             rel="noopener me"
-            class="hover:opacity-100 opacity-80 transition-opacity"
+            aria-label="X"
+            class="hover:text-text transition-colors"
           >
             <Icon name="mdi:twitter" />
           </a>
@@ -264,15 +203,16 @@ const combinedJsonLd = {
             href="https://linkedin.com/in/juanfranciscodoradotorres"
             target="_blank"
             rel="noopener me"
-            class="hover:opacity-100 opacity-80 transition-opacity"
+            aria-label="LinkedIn"
+            class="hover:text-text transition-colors"
           >
             <Icon name="mdi:linkedin" />
           </a>
         </div>
         <p class="text-sm">
-          © {new Date().getFullYear()} Swifty Journey — Created by Juan F. Dorado.
+          © {new Date().getFullYear()} Swifty Journey — Juan F. Dorado.
         </p>
-        <p class="text-xs opacity-60">
+        <p class="text-xs text-text-subtle">
           Built with Astro, Tailwind, and Swift-inspired minimalism.
         </p>
       </div>

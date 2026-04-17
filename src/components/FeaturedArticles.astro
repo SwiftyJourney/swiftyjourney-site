@@ -1,0 +1,61 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import Button from "./Button.astro";
+
+export type Article = {
+  title: string;
+  excerpt: string;
+  href: string;
+  date?: string;
+};
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  articles: Article[];
+  moreLabel: string;
+  moreHref: string;
+};
+
+const { eyebrow, title, articles, moreLabel, moreHref } = Astro.props;
+---
+
+<section class="py-20 md:py-28">
+  <SectionHeading eyebrow={eyebrow} title={title} />
+
+  <ul class="mt-12 border-t border-border">
+    {articles.map((article) => (
+      <li class="border-b border-border">
+        <a
+          href={article.href}
+          class="group flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 py-8 md:py-10 transition-colors hover:bg-surface-alt/40 -mx-4 px-4 rounded-md"
+          target="_blank"
+          rel="noopener"
+        >
+          {article.date && (
+            <span class="text-sm text-text-subtle md:w-28 md:shrink-0 tabular-nums">
+              {article.date}
+            </span>
+          )}
+          <div class="flex-1">
+            <h3 class="text-2xl md:text-3xl font-semibold text-text tracking-tight group-hover:text-coral-500 transition-colors">
+              {article.title}
+            </h3>
+            <p class="mt-2 text-base text-text-muted leading-relaxed">
+              {article.excerpt}
+            </p>
+          </div>
+          <span class="text-coral-500 text-xl md:self-center transition-transform group-hover:translate-x-1" aria-hidden="true">
+            →
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-10 flex justify-end">
+    <Button href={moreHref} kind="link" external>
+      {moreLabel} →
+    </Button>
+  </div>
+</section>

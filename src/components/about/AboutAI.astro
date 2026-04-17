@@ -1,0 +1,14 @@
+---
+import AboutOpenSource from "./AboutOpenSource.astro";
+import type { Project } from "../../data/about-content";
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  projects: Project[];
+};
+
+const { eyebrow, title, projects } = Astro.props;
+---
+
+<AboutOpenSource eyebrow={eyebrow} title={title} projects={projects} as="h2" />

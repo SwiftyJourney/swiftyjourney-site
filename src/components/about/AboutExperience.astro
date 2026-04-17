@@ -1,0 +1,31 @@
+---
+import SectionHeading from "../SectionHeading.astro";
+import type { Highlight } from "../../data/about-content";
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  items: Highlight[];
+};
+
+const { eyebrow, title, items } = Astro.props;
+---
+
+<section class="py-20 md:py-28 border-t border-border">
+  <SectionHeading eyebrow={eyebrow} title={title} />
+
+  <ul class="mt-12 border-t border-border">
+    {items.map((item) => (
+      <li class="border-b border-border py-8 md:py-10">
+        <div class="grid md:grid-cols-[16rem_1fr] gap-3 md:gap-10 items-baseline">
+          <h3 class="text-lg md:text-xl font-semibold text-text tracking-tight">
+            {item.category}
+          </h3>
+          <p class="text-lg text-text-muted leading-relaxed max-w-3xl">
+            {item.summary}
+          </p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
