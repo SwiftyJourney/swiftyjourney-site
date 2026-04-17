@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import AboutIntro from "../../../components/about/AboutIntro.astro";
+import AboutExperience from "../../../components/about/AboutExperience.astro";
+import AboutSkills from "../../../components/about/AboutSkills.astro";
+import AboutTeaching from "../../../components/about/AboutTeaching.astro";
+import AboutOpenSource from "../../../components/about/AboutOpenSource.astro";
+import AboutAI from "../../../components/about/AboutAI.astro";
+import FinalCTA from "../../../components/FinalCTA.astro";
+import { aboutContent } from "../../../data/about-content";
+
+const c = aboutContent.en;
+---
+
+<BaseLayout
+  lang="en"
+  title="About — Juan Dorado · Swifty Journey"
+  description="Senior iOS Engineer from Mexico. Clean architecture, SwiftUI, mentoring, open source."
+  seoTitle="About Juan Dorado — Senior iOS Engineer"
+  seoDescription="11+ years shipping iOS apps. Clean architecture, SwiftUI, Swift Testing, mentoring and open source."
+>
+  <AboutIntro eyebrow={c.intro.eyebrow} title={c.intro.title} lede={c.intro.lede} />
+
+  <AboutExperience
+    eyebrow={c.highlights.eyebrow}
+    title={c.highlights.title}
+    items={c.highlights.items}
+  />
+
+  <AboutSkills
+    eyebrow={c.skills.eyebrow}
+    title={c.skills.title}
+    groups={c.skills.groups}
+  />
+
+  <AboutTeaching
+    eyebrow={c.teaching.eyebrow}
+    title={c.teaching.title}
+    moderator={c.teaching.moderator}
+    academyHeading={c.teaching.academyHeading}
+    credentials={c.teaching.credentials}
+  />
+
+  <AboutOpenSource
+    eyebrow={c.openSource.eyebrow}
+    title={c.openSource.title}
+    projects={c.openSource.projects}
+  />
+
+  <AboutAI
+    eyebrow={c.ai.eyebrow}
+    title={c.ai.title}
+    projects={c.ai.projects}
+  />
+
+  <FinalCTA
+    heading={c.finalCta.heading}
+    body={c.finalCta.body}
+    ctaLabel={c.finalCta.ctaLabel}
+    ctaHref={c.finalCta.ctaHref}
+    external
+  />
+</BaseLayout>

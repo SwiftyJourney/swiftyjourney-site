@@ -1,233 +1,49 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroPortfolio from "../../components/HeroPortfolio.astro";
-import ProblemSolver from "../../components/ProblemSolver.astro";
-import CredentialStrip from "../../components/CredentialStrip.astro";
-import SkillStrip from "../../components/SkillStrip.astro";
-import ProjectsGrid from "../../components/ProjectsGrid.astro";
-import TechBadges from "../../components/TechBadges.astro";
-import PartnersStrip from "../../components/PartnersStrip.astro";
-import ConnectSection from "../../components/ConnectSection.astro";
-
-const altHref = "/en/";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import MiniAbout from "../../components/MiniAbout.astro";
+import FinalCTA from "../../components/FinalCTA.astro";
+import { featuredArticles } from "../../data/featured-articles";
 ---
 
 <BaseLayout
   lang="es"
   title="Swifty Journey — Juan Dorado"
-  description="Senior Software Engineer (Especialista iOS) mexicano."
-  seoTitle="Juan Dorado - Senior Software Engineer (Especialista iOS)"
-  seoDescription="Senior Software Engineer especializado en desarrollo iOS con Swift, SwiftUI y arquitecturas móviles escalables. Más de 8 años construyendo aplicaciones iOS innovadoras."
-  seoImage="/hero/taylor_wave.png"
+  description="Senior iOS Engineer. Swift, SwiftUI, Clean Architecture."
+  seoTitle="Juan Dorado — Senior iOS Engineer"
+  seoDescription="Construyo apps iOS mantenibles y testeables con Swift y SwiftUI — y escribo sobre lo que aprendo en el camino."
   seoType="profile"
 >
   <HeroPortfolio
-    title="Senior iOS Engineer"
-    subtitle="Construyo apps iOS mantenibles y testeables con SwiftUI y Clean Architecture. Comparto lo que aprendo en SwiftyJourney Blog."
-    ctas={[
-      { label: "Ver lo que construyo", href: "#projects" },
-      { label: "Leer el blog", href: "https://blog.swiftyjourney.com/es", kind: "primary" },
-      { label: "Contactar", href: "#connect" },
-    ]}
+    titleLead="Domina"
+    titleAccent="Swift"
+    titleTail="Construye apps iOS reales."
+    subtitle="Comparto lo que aprendo tras 11+ años enviando apps iOS — clean architecture, SwiftUI e ingeniería del mundo real, en lenguaje claro."
+    primaryCta={{ label: "Leer el blog", href: "https://blog.swiftyjourney.com/es/", external: true }}
+    ghostCta={{ label: "Sobre mí", href: "/es/about/" }}
   />
 
-  <ProblemSolver
-    title="Hola, soy Juan"
-    subtitle="Soy un Senior iOS Engineer de México con más de 11 años construyendo apps iOS — de UIKit a SwiftUI, de proyectos individuales a liderar equipos. Ahora mismo estoy explorando cómo las herramientas de IA y la instrumentación de rendimiento pueden mejorar el desarrollo móvil."
-    items={[
-      {
-        text: "De UIKit a SwiftUI — adoptando Swift Concurrency y patrones modernos en el camino.",
-      },
-      {
-        text: "Disfruto mentoreando desarrolladores y estableciendo mejores prácticas de arquitectura en equipos.",
-      },
-      {
-        text: "Actualmente explorando AI Engineering, dominio de Instruments, y SwiftData.",
-      },
-      {
-        text: "Colaborador open source y moderador de comunidad.",
-      },
-    ]}
-    photoSrc="/hero/taylor_wave.png"
+  <FeaturedArticles
+    eyebrow="Últimos artículos"
+    title="Del blog"
+    articles={featuredArticles.es}
+    moreLabel="Leer todos los artículos"
+    moreHref="https://blog.swiftyjourney.com/es/"
   />
 
-  <CredentialStrip
-    title="Credenciales y Formación"
-    credentials={[
-      {
-        logoComponent: "EDLogo",
-        program: "iOS Lead Essentials",
-        role: "Moderador",
-        year: "2022",
-        href: "https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/",
-      },
-      {
-        logoSrc: "/credentials/apple-coding-academy.webp",
-        program: "Swift Developer Program",
-        year: "2025",
-        href: "https://acoding.academy/formaciones/swift-developer-program/",
-      },
-      {
-        logoSrc: "/credentials/apple-coding-academy.webp",
-        program: "Swift Accessibility Program",
-        year: "2025",
-        href: "https://acoding.academy/",
-      },
-      {
-        logoSrc: "/credentials/apple-coding-academy.webp",
-        program: "Swift Refresh Workshop",
-        year: "2025",
-        href: "https://acoding.academy/",
-      },
-      {
-        logoSrc: "/credentials/apple-coding-academy.webp",
-        program: "Swift Mastery Program",
-        year: "En curso · 2026",
-        href: "https://acoding.academy/formaciones/swift-mastery-program/",
-      },
-    ]}
+  <MiniAbout
+    heading="Hola, soy Juan — Senior iOS Engineer desde México."
+    body="11+ años enviando apps iOS, de UIKit a SwiftUI, de proyectos individuales a liderar equipos. Escribo para ayudar a otros ingenieros a razonar los tradeoffs que a mí me hubiera gustado que me mostraran."
+    ctaLabel="Más sobre mí"
+    ctaHref="/es/about/"
   />
 
-  <SkillStrip
-    skills={[
-      {
-        icon: "mdi:design",
-        title: "Arquitectura",
-        desc: "Clean Architecture, SOLID, TDD, límites por capas.",
-      },
-      {
-        icon: "mdi:source-branch",
-        title: "Modularización",
-        desc: "Módulos SPM, límites claros y dependencias definidas.",
-      },
-      {
-        icon: "mdi:gesture-tap-button",
-        title: "SwiftUI & Concurrencia",
-        desc: "De UIKit a SwiftUI; async/await, actores y aislamiento.",
-      },
-      {
-        icon: "mdi:chart-box-outline",
-        title: "Analytics & Observabilidad",
-        desc: "Adobe Analytics y DataDog: eventos, trazas y alertas.",
-      },
-      {
-        icon: "mdi:cloud-sync-outline",
-        title: "CI/CD",
-        desc: "GitHub Actions; Xcode Cloud cuando aplica.",
-      },
-      {
-        icon: "mdi:terminal",
-        title: "Git terminal-first",
-        desc: "Flujos Git; automatización vía CLI.",
-      },
-    ]}
-  />
-
-  <TechBadges
-    title="Tecnologías"
-    items={[
-      { icon: "mdi:apple", label: "Apple Platforms" },
-      { icon: "mdi:language-swift", label: "Swift" },
-      { icon: "mdi:gesture-tap-button", label: "SwiftUI" },
-      { icon: "mdi:alpha-u-box", label: "UIKit" },
-      { icon: "mdi:database", label: "SwiftData" },
-      { icon: "mdi:database-outline", label: "CoreData" },
-      { icon: "mdi:flask-outline", label: "Swift Testing" },
-      { icon: "mdi:flash", label: "Swift Concurrency" },
-      { icon: "mdi:speedometer", label: "Instruments" },
-      { icon: "mdi:source-branch", label: "SPM" },
-      { icon: "mdi:cloud-sync-outline", label: "CI/CD" },
-      { icon: "mdi:github", label: "GitHub" },
-      { icon: "mdi:git", label: "Git (CLI)" },
-      { icon: "mdi:chart-box-outline", label: "Adobe Analytics" },
-      { icon: "mdi:chart-timeline-variant", label: "DataDog" },
-    ]}
-  />
-
-  <ProjectsGrid
-    title="Open Source"
-    projects={[
-      {
-        title: "TAXI",
-        desc: "Plantilla de arquitectura modular para iOS usando Clean Architecture, TDD y SPM.",
-        tags: ["Swift", "Arquitectura", "SPM"],
-        href: "https://github.com/SwiftyJourney/TAXI",
-      },
-      {
-        title: "BTC Price Study Case",
-        desc: "Clean Architecture y TDD desde historias de usuario hasta lógica de negocio testeada.",
-        tags: ["Swift", "Clean Architecture", "TDD"],
-        href: "https://github.com/SwiftyJourney/btc-price-study-case",
-      },
-      {
-        title: "MyMangasApp",
-        desc: "App en SwiftUI con SwiftData, Swift Testing y Keychain — proyecto final del Swift Developer Program 2025.",
-        tags: ["SwiftUI", "SwiftData", "Testing"],
-        href: "https://github.com/jfdoradotr/my-mangas-app-study-case",
-      },
-      {
-        title: "XCSnippets",
-        desc: "Snippets de Xcode vía SPM.",
-        tags: ["Swift", "Productividad"],
-        href: "https://github.com/SwiftyJourney/XCSnippets",
-      },
-      {
-        title: "I-VIPER",
-        desc: "Plantilla para iniciar módulos VIPER.",
-        tags: ["Makefile", "Arquitectura"],
-        href: "https://github.com/SwiftyJourney/I-VIPER",
-      },
-    ]}
-  />
-
-  <ProjectsGrid
-    id="claude-code-skills"
-    title="Claude Code Skills"
-    projects={[
-      {
-        title: "iOS Architecture Expert",
-        desc: "Skill de Claude Code para guía de arquitectura iOS, principios SOLID y diseño modular.",
-        tags: ["Claude Code", "AI", "Arquitectura"],
-        href: "https://github.com/SwiftyJourney/ios-architecture-expert-skill",
-      },
-      {
-        title: "SwiftUI Expert",
-        desc: "Skill de Claude Code para mejores prácticas de SwiftUI y patrones declarativos modernos.",
-        tags: ["Claude Code", "AI", "SwiftUI"],
-        href: "https://github.com/SwiftyJourney/swiftui-expert-skill",
-      },
-      {
-        title: "Requirements Engineering",
-        desc: "Skill de Claude Code para transformar requerimientos en historias de usuario y especificaciones.",
-        tags: ["Claude Code", "AI", "Ingeniería"],
-        href: "https://github.com/SwiftyJourney/requirements-engineering-skill",
-      },
-    ]}
-  />
-
-  <PartnersStrip
-    title="Recursos de Desarrollo"
-    logoSrc="/partners/capi_neo_pills.png"
-    ctaHref="https://blog.swiftyjourney.com/es/recursos/"
-    ctaLabel="Ver recursos"
-    desc="Elige tu píldora de desarrollo — sumérgete en herramientas y recursos para iOS y más allá."
-    disclaimer="Algunos enlaces pueden ser de afiliado — apoyas Swifty Journey sin costo extra para ti."
-  />
-
-  <ConnectSection
-    title="¿Interesado en trabajar juntos?"
-    subtitle="Disfruto colaborar en proyectos iOS desafiantes, revisar arquitectura y ayudar a desarrolladores a crecer."
-    areas={[
-      { icon: "mdi:cellphone-link", title: "Colaboración iOS", desc: "Construyendo y escalando apps Swift/SwiftUI con arquitectura limpia." },
-      { icon: "mdi:source-branch-check", title: "Code Reviews y Arquitectura", desc: "Segundas opiniones sobre modularización, estrategias de testing y CI/CD." },
-      { icon: "mdi:account-group", title: "Mentoría", desc: "Guiando desarrolladores en mejores prácticas iOS y crecimiento profesional." },
-    ]}
-    metrics={[
-      { value: "11+", label: "años de experiencia" },
-      { value: "67%", label: "mejora en CI/CD" },
-      { value: "22%", label: "mejora en rendimiento" },
-    ]}
-    ctaLabel="Conectemos"
-    ctaHref="https://linkedin.com/in/juanfranciscodoradotorres"
+  <FinalCTA
+    heading="¿Quieres aprender Swift en serio?"
+    body="Escritura clara, opiniones fuertes, código que funciona."
+    ctaLabel="Leer el blog"
+    ctaHref="https://blog.swiftyjourney.com/es/"
+    external
   />
 </BaseLayout>

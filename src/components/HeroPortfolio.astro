@@ -1,84 +1,83 @@
 ---
+import Button from "./Button.astro";
 
 type Props = {
-  title: string;
+  titleLead: string;
+  titleAccent: string;
+  titleTail: string;
   subtitle: string;
-  ctas: { label: string; href: string; kind?: "primary" | "ghost" }[];
+  primaryCta: { label: string; href: string; external?: boolean };
+  ghostCta: { label: string; href: string };
+  imageSrc?: string;
+  imageAlt?: string;
 };
-const { title, subtitle, ctas } = Astro.props;
+
+const {
+  titleLead,
+  titleAccent,
+  titleTail,
+  subtitle,
+  primaryCta,
+  ghostCta,
+  imageSrc = "/hero/taylor_coding.png",
+  imageAlt = "Swifty Journey bird illustration",
+} = Astro.props;
 ---
 
-<section class="py-16 md:py-24 text-center">
-  <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-orange-500">{title}</h1>
-  <p class="mt-4 text-lg md:text-xl opacity-80 max-w-2xl mx-auto">{subtitle}</p>
+<section class="py-20 md:py-32 text-center">
+  <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-text leading-[1.05]">
+    {titleLead}{" "}
+    <span class="italic text-coral-500">{titleAccent}</span>.
+    <br class="hidden md:block" />
+    {titleTail}
+  </h1>
 
-  <div class="mt-4 flex items-center justify-center gap-3">
-    <slot name="meta" />
+  <p class="mt-6 text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+    {subtitle}
+  </p>
+
+  <div class="mt-10 flex items-center justify-center gap-3 flex-wrap">
+    <Button href={primaryCta.href} kind="primary" size="lg" external={primaryCta.external}>
+      {primaryCta.label}
+    </Button>
+    <Button href={ghostCta.href} kind="ghost" size="lg">
+      {ghostCta.label} →
+    </Button>
   </div>
 
-  <div class="mt-8 flex items-center justify-center gap-3 flex-wrap">
-    {
-      ctas.map(({ label, href, kind = "ghost" }) => (
-        <a
-          href={href}
-          class={`ripple-button inline-flex items-center gap-2 px-6 py-3 font-medium rounded-xl transition-all duration-300 relative overflow-hidden
-                 ${kind === "primary"
-                   ? "bg-orange-500 hover:bg-orange-600 hover:shadow-xl hover:scale-105 text-white shadow-lg shadow-orange-500/30"
-                   : "border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-105"}`}
-        >
-          {label}
-        </a>
-      ))
-    }
+  <div class="relative mt-16 md:mt-20 flex items-center justify-center" transition:name="hero-image">
+    <div class="hero-halo" aria-hidden="true"></div>
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      width="320"
+      height="320"
+      class="relative w-56 md:w-72 lg:w-80"
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 
   <style>
-    .ripple-button {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ripple-button::before {
-      content: '';
+    .hero-halo {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .ripple-button:active::before {
-      width: 300px;
-      height: 300px;
-      transition: width 0s, height 0s;
+      inset: 50% 50% auto auto;
+      transform: translate(50%, -50%);
+      width: 28rem;
+      height: 28rem;
+      border-radius: 9999px;
+      background: radial-gradient(
+        closest-side,
+        rgba(249, 115, 99, 0.28) 0%,
+        rgba(236, 105, 91, 0.10) 45%,
+        rgba(236, 105, 91, 0) 75%
+      );
+      pointer-events: none;
+      z-index: 0;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .ripple-button {
-        transition: none;
-      }
-      .ripple-button:hover {
-        transform: none;
-      }
-      .ripple-button::before {
-        display: none;
-      }
+      .hero-halo { opacity: 0.6; }
     }
   </style>
-
-  <!-- Decorativo: taylor coding -->
-  <div class="relative mt-12 flex items-center justify-center" transition:name="hero-image">
-    <img 
-      src="/hero/taylor_coding.png"
-      alt="Taylor Swift coding illustration"
-      width="320"
-      height="320"
-      class="w-64 md:w-80 opacity-80"
-      loading="lazy"
-    />
-  </div>
 </section>

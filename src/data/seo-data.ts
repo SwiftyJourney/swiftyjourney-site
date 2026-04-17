@@ -12,7 +12,7 @@ export const createPersonJsonLd = (lang: 'en' | 'es' = 'en') => {
       ? "Senior Software Engineer especialista en iOS con más de 8 años de experiencia en Swift y SwiftUI. Experto en arquitecturas escalables y mejores prácticas de desarrollo."
       : "Senior Software Engineer specializing in iOS with 8+ years of experience in Swift and SwiftUI. Expert in scalable architectures and development best practices.",
     "url": "https://swiftyjourney.com",
-    "image": "https://swiftyjourney.com/hero/taylor_wave.png",
+    "image": "https://swiftyjourney.com/hero/taylor_coding.png",
     "sameAs": [
       "https://github.com/swiftyjourney",
       "https://twitter.com/jfdoradotr",
@@ -43,7 +43,7 @@ export const createOrganizationJsonLd = (lang: 'en' | 'es' = 'en') => {
     "@type": "Organization",
     "name": "Swifty Journey",
     "url": "https://swiftyjourney.com",
-    "logo": "https://swiftyjourney.com/logo-light.svg",
+    "logo": "https://swiftyjourney.com/logo.svg",
     "description": isSpanish
       ? "Blog y recursos sobre desarrollo iOS, Swift y SwiftUI para desarrolladores de todos los niveles."
       : "Blog and resources about iOS development, Swift and SwiftUI for developers of all levels.",
@@ -85,7 +85,7 @@ export const createWebsiteJsonLd = (lang: 'en' | 'es' = 'en') => {
       "name": "Swifty Journey",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://swiftyjourney.com/logo-light.svg"
+        "url": "https://swiftyjourney.com/logo.svg"
       }
     }
   };
