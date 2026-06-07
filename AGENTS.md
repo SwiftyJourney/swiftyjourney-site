@@ -25,7 +25,7 @@
 
 ## Testing Guidelines
 - No automated test framework is configured yet. If you add tests, document the framework and commands here.
-- Manual checks should include both locales (`/en/`, `/es/`), responsive layout, and dark/light mode toggling.
+- Manual checks should include both locales (`/en/`, `/es/`) and responsive layout. The site is light-only — no dark mode to test.
 
 ## Commit & Pull Request Guidelines
 - Recent commits use short, imperative, sentence-case messages (e.g., “Improve styling”, “Remove preloads…”). Follow that convention and avoid prefixes like `feat:` unless the team adopts them.

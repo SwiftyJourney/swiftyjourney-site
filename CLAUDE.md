@@ -13,7 +13,7 @@ Personal portfolio website for an iOS engineer, built with **Astro 5** + **Tailw
 - `npm run preview` — serve production build locally
 - `npm run astro -- --help` — Astro CLI help
 
-No automated test framework is configured. Manual testing should cover both locales (`/en/`, `/es/`), responsive layout, and dark/light mode.
+No automated test framework is configured. Manual testing should cover both locales (`/en/`, `/es/`) and responsive layout. The site is light-only — there is no dark mode to test.
 
 ## Architecture
 
@@ -36,9 +36,12 @@ The site serves two locales: English (`/en/`) and Spanish (`/es/`). The root `in
 
 ### Design System
 
-- **Colors**: Zinc palette (primary) + Orange-500 accents. Dark mode via `.dark` class on `<html>`.
-- **Patterns**: `rounded-2xl`, subtle shadows, `hover:scale-105` transitions, 300ms duration standard.
-- **Typography**: System fonts with OpenType features (`cv11`, `ss01`).
+Tokens live in `src/styles/global.css` via Tailwind v4 `@theme`. Use the semantic aliases, not raw hex or Tailwind zinc/orange.
+
+- **Colors**: Coral scale with `--color-accent` (coral-500 `#EC695B`) / `--color-accent-hover` (coral-600 `#DC5648`) over a warm cream background `--color-bg` (`#F5F3EF`). Use `text-accent` / `border-accent` for foregrounds and borders; `bg-coral-500` / `hover:bg-coral-600` are the sanctioned background aliases.
+- **Light-only**: No dark mode. There is no `.dark` class; `html` declares `color-scheme: light`. Do not add `dark:` utilities.
+- **Typography**: Inter (`--font-sans` / `--font-display`) with OpenType features (`cv11`, `ss01`).
+- **Patterns**: `rounded-2xl`, subtle shadows, smooth transitions on the `--ease-apple` curve.
 - **Responsive**: Mobile-first with sm/md/lg/xl breakpoints.
 
 ## Conventions

@@ -81,7 +81,7 @@ src/
 
 ### Key Features
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Dark/Light Mode**: Persistent theme switching with localStorage
+- **Light-only Design**: Warm cream UI with coral accents (no dark mode)
 - **Multilingual**: Complete ES/EN support with proper hreflang SEO
 - **Performance**: Optimized images and minimal JavaScript
 - **SEO Optimized**: Meta tags, Open Graph, canonical URLs
@@ -90,16 +90,18 @@ src/
 ## 🎨 Styling
 
 The site uses **Tailwind CSS v4** with:
-- **Color Scheme**: Zinc palette with orange accents
-- **Typography**: System fonts with custom feature settings
-- **Dark Mode**: Class-based dark mode implementation
+- **Color Scheme**: Coral accent scale over a warm cream background
+- **Typography**: Inter with custom OpenType feature settings (`cv11`, `ss01`)
+- **Light-only**: No dark mode; `html` declares `color-scheme: light`
 - **Components**: Modular, reusable Astro components
 
 ### Design System
-- **Primary Color**: Orange-500 (`#f97316`)
-- **Text Colors**: Zinc-900 (light) / Zinc-100 (dark)
-- **Background**: White (light) / Zinc-900 (dark)
-- **Borders**: Zinc-300 (light) / Zinc-700 (dark)
+Tokens are defined in `src/styles/global.css` via Tailwind v4 `@theme`.
+- **Accent**: `--color-accent` = coral-500 (`#EC695B`), hover `--color-accent-hover` = coral-600 (`#DC5648`)
+- **Background**: cream `--color-bg` (`#F5F3EF`), surfaces `#FFFFFF` / `#EBE8E2`
+- **Text**: ink `--color-text` (`#0B0B0C`) with muted/subtle variants
+- **Borders**: `--color-border` (`#E2DED7`) / `--color-border-strong` (`#CFC9BF`)
+- **Font**: Inter (`--font-sans` / `--font-display`)
 
 ## 📝 Content Management
 
