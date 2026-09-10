@@ -8,10 +8,10 @@ export type LocalizedArticles = {
 export const featuredArticles: LocalizedArticles = {
   en: [
     {
-      title: "Mastering Instruments (Part 2): Stack vs. Heap, Symbolication, and Early Detection",
-      excerpt: "How your app manages memory, why dSYMs matter, and how to spot performance issues before Instruments is even open.",
-      href: "https://blog.swiftyjourney.com/en/blog/mastering-instruments-stack-heap-symbolication",
-      date: "Apr 2026",
+      title: "Thread Safety in Swift: From NSLock to Actors",
+      excerpt: "Three ways to make Swift code thread-safe — from traditional NSLock to Actors — and how Swift Concurrency dissolves race conditions and deadlocks.",
+      href: "https://blog.swiftyjourney.com/en/blog/thread-safety-in-swift-from-nslock-to-actors",
+      date: "Nov 2025",
     },
     {
       title: "Complete Swift 6.2 Guide: Approachable Concurrency Explained",
@@ -28,10 +28,10 @@ export const featuredArticles: LocalizedArticles = {
   ],
   es: [
     {
-      title: "Dominando Instruments (Parte 2): Stack vs. Heap, simbolización y detección temprana",
-      excerpt: "Cómo tu app gestiona la memoria, por qué los dSYMs son críticos y cómo detectar problemas de rendimiento antes de abrir Instruments.",
-      href: "https://blog.swiftyjourney.com/es/blog/dominando-instruments-stack-heap-simbolizacion",
-      date: "Abr 2026",
+      title: "Thread Safety en Swift: De NSLock a Actors",
+      excerpt: "Tres enfoques para lograr thread safety en Swift — desde NSLock tradicional hasta Actors — y cómo Swift Concurrency resuelve race conditions y deadlocks.",
+      href: "https://blog.swiftyjourney.com/es/blog/thread-safety-en-swift-de-nslock-a-actors",
+      date: "Nov 2025",
     },
     {
       title: "Guía completa de Swift 6.2: Approachable Concurrency explicado",
