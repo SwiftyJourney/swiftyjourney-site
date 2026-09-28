@@ -1,0 +1,86 @@
+---
+import GroundedNav from "./GroundedNav.astro";
+import { groundedContent, type Lang } from "../../data/grounded-content";
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+const c = groundedContent[lang].app;
+const base = `/${lang}/apps/grounded`;
+---
+
+<GroundedNav lang={lang} current="app" />
+
+<section class="py-16 md:py-24">
+  <p class="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-5">
+    {c.eyebrow}
+  </p>
+  <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-text leading-[1.05] max-w-4xl">
+    {c.heading}
+  </h1>
+  <p class="mt-8 text-xl text-text-muted leading-relaxed max-w-3xl">
+    {c.lede}
+  </p>
+</section>
+
+<section class="pb-16 md:pb-24">
+  <ul class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 max-w-4xl">
+    {c.screenshots.map((shot) => (
+      <li class="mx-auto w-full max-w-[280px]">
+        <img
+          src={shot.src}
+          alt={shot.alt}
+          width="660"
+          height="1434"
+          loading="lazy"
+          decoding="async"
+          class="w-full h-auto rounded-[2rem] border border-border-strong shadow-lg"
+        />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="py-16 md:py-24 border-t border-border">
+  <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-text">
+    {c.featuresHeading}
+  </h2>
+  <ul class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {c.features.map((feature) => (
+      <li class="rounded-2xl border border-border bg-surface p-6">
+        <h3 class="text-lg font-semibold text-text">{feature.title}</h3>
+        <p class="mt-2 text-text-muted leading-relaxed">{feature.body}</p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="py-16 md:py-24 border-t border-border">
+  <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-text">
+    {c.requirementsHeading}
+  </h2>
+  <p class="mt-4 text-lg text-text-muted leading-relaxed max-w-3xl">{c.requirements}</p>
+  <p class="mt-4 text-sm text-text-subtle">{c.disclaimer}</p>
+</section>
+
+<section class="py-16 md:py-24 border-t border-border">
+  <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-text">
+    {c.linksHeading}
+  </h2>
+  <div class="mt-6 flex flex-wrap gap-4">
+    <a
+      href={`${base}/support/`}
+      class="inline-flex items-center px-5 py-2.5 rounded-md border border-border text-text hover:border-accent hover:text-accent transition-colors"
+    >
+      {c.supportLink}
+    </a>
+    <a
+      href={`${base}/privacy/`}
+      class="inline-flex items-center px-5 py-2.5 rounded-md border border-border text-text hover:border-accent hover:text-accent transition-colors"
+    >
+      {c.privacyLink}
+    </a>
+  </div>
+</section>

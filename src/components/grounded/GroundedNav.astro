@@ -1,0 +1,33 @@
+---
+import { groundedContent, type Lang } from "../../data/grounded-content";
+
+type Props = {
+  lang: Lang;
+  current: "app" | "support" | "privacy";
+};
+
+const { lang, current } = Astro.props;
+const nav = groundedContent[lang].nav;
+const base = `/${lang}/apps/grounded`;
+const items = [
+  { key: "app", label: nav.app, href: `${base}/` },
+  { key: "support", label: nav.support, href: `${base}/support/` },
+  { key: "privacy", label: nav.privacy, href: `${base}/privacy/` },
+] as const;
+---
+
+<nav aria-label="Grounded" class="pt-10 flex flex-wrap gap-2 text-sm">
+  {items.map((item) => (
+    <a
+      href={item.href}
+      aria-current={item.key === current ? "page" : undefined}
+      class={
+        item.key === current
+          ? "px-3 py-1.5 rounded-full bg-text text-bg font-medium"
+          : "px-3 py-1.5 rounded-full border border-border text-text-muted hover:text-accent hover:border-accent transition-colors"
+      }
+    >
+      {item.label}
+    </a>
+  ))}
+</nav>

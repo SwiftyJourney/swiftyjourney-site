@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import GroundedPrivacy from "../../../../../components/grounded/GroundedPrivacy.astro";
+import { groundedContent } from "../../../../../data/grounded-content";
+
+const c = groundedContent.en.privacy;
+---
+
+<BaseLayout lang="en" title={c.title} description={c.description}>
+  <GroundedPrivacy lang="en" />
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../../../../layouts/BaseLayout.astro";
+import GroundedSupport from "../../../../../components/grounded/GroundedSupport.astro";
+import { groundedContent } from "../../../../../data/grounded-content";
+
+const c = groundedContent.es.support;
+---
+
+<BaseLayout lang="es" title={c.title} description={c.description}>
+  <GroundedSupport lang="es" />
+</BaseLayout>
